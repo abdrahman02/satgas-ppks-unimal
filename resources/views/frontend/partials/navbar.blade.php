@@ -1,40 +1,50 @@
-<nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-</nav>
+<header id="header" class="header fixed-top shadow-sm">
+  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+    <a href="/" class="logo d-flex align-items-center">
+      <img src="{{ asset('img/Logo-Tut-Wuri-Handayani.png') }}" alt="logo tut wuri handayani">
+      <img src="{{ asset('img/logo_unimal_1.png') }}" alt="logo tut wuri handayani">
+      <img src="{{ asset('img/logo-satgas-ppks-unimal.png') }}" alt="logo tut wuri handayani">
+      {{-- <span>FlexStart</span> --}}
+    </a>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        {{-- Beranda --}}
+        <li><a class="nav-link scrollto active" href="#"><i class="bi bi-house-fill"></i>&nbsp;Beranda</a></li>
+
+        {{-- Profil --}}
+        <li class="dropdown"><a href="#"><i class="bi bi-person-lines-fill"></i>&nbsp;<span>Profil</span> <i
+              class="bi bi-chevron-down"></i></a>
+          <ul>
+            <li><a href="#">Filosofi Logo</a></li>
+            <li><a href="#">Struktur Organisasi</a></li>
+          </ul>
+        </li>
+
+        {{-- Kekerasan Seksual --}}
+        <li class="dropdown"><a href="#"><i class="bi bi-bank2"></i>&nbsp;<span>Kekerasan Seksual</span> <i
+              class="bi bi-chevron-down"></i></a>
+          <ul>
+            <li><a href="#">Dasar Hukum</a></li>
+            <li><a href="#">Kekerasan Seksual</a></li>
+          </ul>
+        </li>
+
+        {{-- Berita --}}
+        <li><a class="nav-link scrollto" href="#"><i class="bi bi-newspaper"></i>&nbsp;Berita</a></li>
+
+        {{-- Survei --}}
+        <li><a class="nav-link scrollto" href="#"><i class="bi bi-ui-checks"></i>&nbsp;Survei</a></li>
+      </ul>
+
+      <ul>
+        {{-- Lapor! --}}
+        <li><a class="getstarted scrollto" href="#about"><i class="bi bi-send-exclamation-fill"></i>&nbsp;LAPOR !</a>
+        </li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+    <!-- .navbar -->
+  </div>
+</header>
