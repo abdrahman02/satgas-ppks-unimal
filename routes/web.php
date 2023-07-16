@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Frontend\BeritaController;
+use App\Http\Controllers\Frontend\FilosofiLogoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ Route::resource('/', LandingController::class)->only(['index']);
 Route::resource('/berita', BeritaController::class)->only(['index', 'show']);
 
 
-
+Route::resource('/filosofi-logo', FilosofiLogoController::class)->only('index');
 
 
 
