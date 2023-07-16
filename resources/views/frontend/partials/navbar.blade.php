@@ -11,7 +11,8 @@
     <nav id="navbar" class="navbar">
       <ul>
         {{-- Beranda --}}
-        <li><a class="nav-link scrollto active" href="#"><i class="bi bi-house-fill"></i>&nbsp;Beranda</a></li>
+        <li><a class="nav-link scrollto {{ Request::is('/') ? 'active' : '' }}" href="/"><i
+              class="bi bi-house-fill"></i>&nbsp;Beranda</a></li>
 
         {{-- Profil --}}
         <li class="dropdown"><a href="#"><i class="bi bi-person-lines-fill"></i>&nbsp;<span>Profil</span> <i
@@ -32,7 +33,8 @@
         </li>
 
         {{-- Berita --}}
-        <li><a class="nav-link scrollto" href="#"><i class="bi bi-newspaper"></i>&nbsp;Berita</a></li>
+        <li><a class="nav-link scrollto {{ Request::is('berita*') ? 'active' : '' }}" href="/berita"><i
+              class="bi bi-newspaper"></i>&nbsp;Berita</a></li>
 
         {{-- Survei --}}
         <li><a class="nav-link scrollto" href="#"><i class="bi bi-ui-checks"></i>&nbsp;Survei</a></li>

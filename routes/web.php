@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\Frontend\BeritaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/', function () {
-    return view('frontend.layout.main');
-});
+Route::resource('/', LandingController::class)->only(['index']);
+Route::resource('/berita', BeritaController::class)->only(['index', 'show']);
 
 
 
