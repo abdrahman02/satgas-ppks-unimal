@@ -24,10 +24,10 @@
         </li>
 
         {{-- Kekerasan Seksual --}}
-        <li class="dropdown"><a href="#"><i class="bi bi-bank2"></i>&nbsp;<span>Kekerasan Seksual</span> <i
-              class="bi bi-chevron-down"></i></a>
+        <li class="dropdown"><a href="#" class="{{ Request::is('dasar-hukum*') ? 'active' : '' }}"><i
+              class="bi bi-bank2"></i>&nbsp;<span>Kekerasan Seksual</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
-            <li><a href="#">Dasar Hukum</a></li>
+            <li><a href="/dasar-hukum">Dasar Hukum</a></li>
             <li><a href="#">Kekerasan Seksual</a></li>
           </ul>
         </li>
