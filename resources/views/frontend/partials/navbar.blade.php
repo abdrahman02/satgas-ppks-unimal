@@ -15,10 +15,10 @@
               class="bi bi-house-fill"></i>&nbsp;Beranda</a></li>
 
         {{-- Profil --}}
-        <li class="dropdown"><a href="#"><i class="bi bi-person-lines-fill"></i>&nbsp;<span>Profil</span> <i
-              class="bi bi-chevron-down"></i></a>
+        <li class="dropdown"><a href="#" class="{{ Request::is('filosofi-logo*') ? 'active' : '' }}"><i
+              class="bi bi-person-lines-fill"></i>&nbsp;<span>Profil</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
-            <li><a href="#">Filosofi Logo</a></li>
+            <li><a href="/filosofi-logo">Filosofi Logo</a></li>
             <li><a href="#">Struktur Organisasi</a></li>
           </ul>
         </li>
@@ -42,7 +42,7 @@
 
       <ul>
         {{-- Lapor! --}}
-        <li><a class="getstarted scrollto" href="#about"><i class="bi bi-send-exclamation-fill"></i>&nbsp;LAPOR !</a>
+        <li><a class="getstarted scrollto" href="#"><i class="bi bi-send-exclamation-fill"></i>&nbsp;LAPOR !</a>
         </li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
