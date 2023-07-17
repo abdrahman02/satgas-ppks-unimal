@@ -23,7 +23,7 @@
                     <h4>Profil</h4>
                     <ul>
                         <li>
-                            <i class="bi bi-chevron-right"></i> <a href="#">Filosofi Logo</a>
+                            <i class="bi bi-chevron-right"></i> <a href="/filosofi-logo">Filosofi Logo</a>
                         </li>
                         <li>
                             <i class="bi bi-chevron-right"></i> <a href="#">Struktur Organisasi</a>
@@ -35,11 +35,11 @@
                     <h4>Kekerasan Seksual</h4>
                     <ul>
                         <li>
-                            <i class="bi bi-chevron-right"></i> <a href="#">Dasar Hukum</a>
+                            <i class="bi bi-chevron-right"></i> <a href="/dasar-hukum">Dasar Hukum</a>
                         </li>
                         <li>
                             <i class="bi bi-chevron-right"></i>
-                            <a href="#">Kekerasan Seksual</a>
+                            <a href="/kekerasan-seksual">Kekerasan Seksual</a>
                         </li>
                     </ul>
                 </div>
