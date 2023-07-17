@@ -6,6 +6,7 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Frontend\BeritaController;
 use App\Http\Controllers\Frontend\DasarHukumController;
 use App\Http\Controllers\Frontend\FilosofiLogoController;
+use App\Http\Controllers\Frontend\KekerasanSeksualController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::resource('/berita', BeritaController::class)->only(['index', 'show']);
 Route::resource('/filosofi-logo', FilosofiLogoController::class)->only('index');
 
 Route::resource('/dasar-hukum', DasarHukumController::class)->only('index');
+Route::resource('/kekerasan-seksual', KekerasanSeksualController::class)->only('index');
 
 
 // Route::get('/', function () {

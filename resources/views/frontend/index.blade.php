@@ -90,10 +90,10 @@
 {{-- End Video Materi --}}
 
 {{-- Sekilas Apa itu kekerasan seksual --}}
-<section id="sekilas-kekerasan-seksual" class="sekilas-kekerasan-seksual">
+<section class="sekilas-kekerasan-seksual">
   <div class="container">
     <div class="row">
-      <header class="section-header mb-3">
+      <header class="section-header mb-3" id="sekilas-kekerasan-seksual">
         <h2>Sekilas Kekerasan Seksual</h2>
       </header>
 
@@ -101,8 +101,8 @@
         <img src="{{ asset('img/hero-stop-kekerasan-seksual.png') }}" class="img-fluid">
       </div>
       <div class="col-lg-6">
-        <h3>Apa itu “Kekerasan Seksual”?</h3>
-        <p>Kekerasan Seksual adalah setiap perbuatan</p>
+        <h3><strong>Apa itu “Kekerasan Seksual”?</strong></h3>
+        <p><strong>Kekerasan Seksual</strong> adalah setiap perbuatan</p>
         <ul class="list-group list-group-flush">
           <li class="list-group-item d-flex align-items-center">
             <div class="col-lg-1 me-3">
@@ -148,7 +148,7 @@
         </ul>
         <div class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
           <div class="text-center text-lg-start">
-            <a href="#"
+            <a href="/kekerasan-seksual"
               class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
               <span>Lebih banyak...</span>
               <i class="bi bi-arrow-right"></i>

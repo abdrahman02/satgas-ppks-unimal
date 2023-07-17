@@ -34,7 +34,7 @@ h3,
 h4,
 h5,
 h6 {
-    /* font-family: "Nunito", sans-serif; */
+    font-family: "Nunito", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -197,7 +197,7 @@ section {
     font-weight: 700;
     letter-spacing: 1px;
     color: #012970;
-    /* font-family: "Nunito", sans-serif; */
+    font-family: "Nunito", sans-serif;
     margin-top: 3px;
 }
 
@@ -229,7 +229,7 @@ section {
     align-items: center;
     justify-content: space-between;
     padding: 10px 0 10px 30px;
-    /* font-family: "Nunito", sans-serif; */
+    font-family: "Nunito", sans-serif;
     font-size: 16px;
     font-weight: 700;
     color: #444444;
@@ -502,7 +502,7 @@ section {
 }
 
 .hero .btn-get-started span {
-    /* font-family: "Nunito", sans-serif; */
+    font-family: "Nunito", sans-serif;
     font-weight: 600;
     font-size: 16px;
     letter-spacing: 1px;
@@ -602,7 +602,7 @@ section {
 }
 
 .about .btn-read-more span {
-    /* font-family: "Nunito", sans-serif; */
+    font-family: "Nunito", sans-serif;
     font-weight: 600;
     font-size: 16px;
     letter-spacing: 1px;
@@ -687,6 +687,13 @@ section {
 }
 
 /*--------------------------------------------------------------
+# Halaman Kekerasan Seksual
+--------------------------------------------------------------*/
+main#kekerasan-seksual {
+    font-family: "Poppins", sans-serif;
+}
+
+/*--------------------------------------------------------------
 # Counts
 --------------------------------------------------------------*/
 .counts {
@@ -719,7 +726,7 @@ section {
 .counts .count-box p {
     padding: 0;
     margin: 0;
-    /* font-family: "Nunito", sans-serif; */
+    font-family: "Nunito", sans-serif;
     font-size: 14px;
 }
 
@@ -1078,7 +1085,7 @@ section {
     transition: none;
     font-size: 16px;
     font-weight: 400;
-    /* font-family: "Nunito", sans-serif; */
+    font-family: "Nunito", sans-serif;
     font-weight: 600;
     transition: 0.3s;
     border: 1px solid #4154f1;
@@ -2384,7 +2391,7 @@ section {
     font-weight: 700;
     letter-spacing: 1px;
     color: #1a885a;
-    /* font-family: "Nunito", sans-serif; */
+    font-family: "Nunito", sans-serif;
     margin-top: 3px;
 }
 
@@ -2392,7 +2399,7 @@ section {
     font-size: 14px;
     line-height: 24px;
     margin-bottom: 0;
-    /* font-family: "Nunito", sans-serif; */
+    font-family: "Nunito", sans-serif;
 }
 
 .footer .footer-top .social-links a {

@@ -18,17 +18,20 @@
         <li class="dropdown"><a href="#" class="{{ Request::is('filosofi-logo*') ? 'active' : '' }}"><i
               class="bi bi-person-lines-fill"></i>&nbsp;<span>Profil</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
-            <li><a href="/filosofi-logo">Filosofi Logo</a></li>
+            <li><a href="/filosofi-logo" class="{{ Request::is('filosofi-logo*') ? 'active' : '' }}">Filosofi Logo</a>
+            </li>
             <li><a href="#">Struktur Organisasi</a></li>
           </ul>
         </li>
 
         {{-- Kekerasan Seksual --}}
-        <li class="dropdown"><a href="#" class="{{ Request::is('dasar-hukum*') ? 'active' : '' }}"><i
+        <li class="dropdown"><a href="#"
+            class="{{ Request::is('dasar-hukum*') ? 'active' : '' }} {{ Request::is('kekerasan-seksual*') ? 'active' : '' }}"><i
               class="bi bi-bank2"></i>&nbsp;<span>Kekerasan Seksual</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
-            <li><a href="/dasar-hukum">Dasar Hukum</a></li>
-            <li><a href="#">Kekerasan Seksual</a></li>
+            <li><a href="/dasar-hukum" class="{{ Request::is('dasar-hukum*') ? 'active' : '' }}">Dasar Hukum</a></li>
+            <li><a href="/kekerasan-seksual" class="{{ Request::is('kekerasan-seksual*') ? 'active' : '' }}">Kekerasan
+                Seksual</a></li>
           </ul>
         </li>
 
