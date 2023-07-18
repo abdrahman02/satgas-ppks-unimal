@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Berita;
 use App\Models\Jabatan;
+use App\Models\Pengurus;
 use App\Models\Periode;
 use Illuminate\Database\Seeder;
 
@@ -96,6 +97,7 @@ class DatabaseSeeder extends Seeder
 
         Berita::factory(10)->create();
         Periode::factory(3)->create();
-        Jabatan::factory(9)->create();
+        Jabatan::factory(3)->create();
+        Pengurus::factory(9)->create();
     }
 }
