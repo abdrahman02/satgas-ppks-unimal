@@ -24,6 +24,12 @@ class PengurusFactory extends Factory
                 'Tendik',
                 'Dosen Psikologi',
                 'Mahasiswa Psikologi'
+            ]),
+            'jabatan_id' => fake()->randomElement([
+                '1', '2', '3'
+            ]),
+            'periode_id' => fake()->randomElement([
+                '1', '2', '3'
             ])
         ];
     }
