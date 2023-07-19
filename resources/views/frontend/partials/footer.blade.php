@@ -26,7 +26,7 @@
                             <i class="bi bi-chevron-right"></i> <a href="/filosofi-logo">Filosofi Logo</a>
                         </li>
                         <li>
-                            <i class="bi bi-chevron-right"></i> <a href="#">Struktur Organisasi</a>
+                            <i class="bi bi-chevron-right"></i> <a href="/struktur-organisasi">Struktur Organisasi</a>
                         </li>
                     </ul>
                 </div>

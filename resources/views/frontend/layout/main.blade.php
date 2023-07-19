@@ -27,6 +27,20 @@
   <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
 
   @stack('custom-style')
+
+  <style>
+    .text-open-sans {
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .text-nunito {
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .text-poppins {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
 </head>
 
 <body>

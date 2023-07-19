@@ -96,8 +96,74 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Berita::factory(10)->create();
-        Periode::factory(3)->create();
-        Jabatan::factory(3)->create();
-        Pengurus::factory(9)->create();
+
+        // Periode::factory(1)->create();
+        Periode::create([
+            'masa_periode' => '2021-2022'
+        ]);
+        Periode::create([
+            'masa_periode' => '2022-2023'
+        ]);
+
+        // Jabatan::factory(3)->create();
+        Jabatan::create([
+            'nama_jabatan' => 'Ketua'
+        ]);
+        Jabatan::create([
+            'nama_jabatan' => 'Sekretaris'
+        ]);
+        Jabatan::create([
+            'nama_jabatan' => 'Anggota'
+        ]);
+
+        // Pengurus::factory(9)->create();
+        Pengurus::create([
+            'nama_pengurus' => fake()->name(),
+            'latar_belakang' => fake()->randomElement([
+                'Dosen FH',
+                'Mahasiswa FH',
+                'Tendik',
+                'Dosen Psikologi',
+                'Mahasiswa Psikologi'
+            ]),
+            'jabatan_id' => '1',
+            'periode_id' => '1'
+        ]);
+        Pengurus::create([
+            'nama_pengurus' => fake()->name(),
+            'latar_belakang' => fake()->randomElement([
+                'Dosen FH',
+                'Mahasiswa FH',
+                'Tendik',
+                'Dosen Psikologi',
+                'Mahasiswa Psikologi'
+            ]),
+            'jabatan_id' => '2',
+            'periode_id' => '1'
+        ]);
+        Pengurus::create([
+            'nama_pengurus' => fake()->name(),
+            'latar_belakang' => fake()->randomElement([
+                'Dosen FH',
+                'Mahasiswa FH',
+                'Tendik',
+                'Dosen Psikologi',
+                'Mahasiswa Psikologi'
+            ]),
+            'jabatan_id' => '3',
+            'periode_id' => '1'
+        ]);
+        Pengurus::create([
+            'nama_pengurus' => fake()->name(),
+            'latar_belakang' => fake()->randomElement([
+                'Dosen FH',
+                'Mahasiswa FH',
+                'Tendik',
+                'Dosen Psikologi',
+                'Mahasiswa Psikologi'
+            ]),
+            'jabatan_id' => '3',
+            'periode_id' => '1'
+        ]);
     }
 }

@@ -17,7 +17,7 @@ class PeriodeFactory extends Factory
     public function definition(): array
     {
         return [
-            'masa_periode' => fake()->unique()->randomElement(['2019-2020', '2020-2021', '2021-2022'])
+            'masa_periode' => '2022-2023'
         ];
     }
 }

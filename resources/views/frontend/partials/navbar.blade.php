@@ -15,12 +15,14 @@
               class="bi bi-house-fill"></i>&nbsp;Beranda</a></li>
 
         {{-- Profil --}}
-        <li class="dropdown"><a href="#" class="{{ Request::is('filosofi-logo*') ? 'active' : '' }}"><i
+        <li class="dropdown"><a href="#"
+            class="{{ Request::is('filosofi-logo*') ? 'active' : '' }} {{ Request::is('struktur-organisasi*') ? 'active' : '' }}"><i
               class="bi bi-person-lines-fill"></i>&nbsp;<span>Profil</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li><a href="/filosofi-logo" class="{{ Request::is('filosofi-logo*') ? 'active' : '' }}">Filosofi Logo</a>
             </li>
-            <li><a href="#">Struktur Organisasi</a></li>
+            <li><a href="/struktur-organisasi"
+                class="{{ Request::is('struktur-organisasi*') ? 'active' : '' }}">Struktur Organisasi</a></li>
           </ul>
         </li>
 
