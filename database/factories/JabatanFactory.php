@@ -17,7 +17,7 @@ class JabatanFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama_jabatan' => fake()->randomElement([
+            'nama_jabatan' => fake()->unique()->randomElement([
                 'Ketua',
                 'Sekretaris',
                 'Anggota'

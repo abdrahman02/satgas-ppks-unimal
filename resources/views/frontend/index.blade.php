@@ -53,7 +53,7 @@
       @endforeach
       <div class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
         <div class="text-center text-lg-start">
-          <a href="#"
+          <a href="/berita"
             class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
             <span>Lebih banyak...</span>
             <i class="bi bi-arrow-right"></i>
