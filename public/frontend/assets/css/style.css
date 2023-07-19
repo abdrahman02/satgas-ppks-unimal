@@ -266,6 +266,21 @@ section {
     background: #1a885a;
 }
 
+.navbar .button-login,
+.navbar .button-login:focus {
+    border: 1px solid #25b97c;
+    padding: 8px 20px;
+    margin-left: 30px;
+    border-radius: 4px;
+    color: #444;
+}
+
+.navbar .button-login:hover,
+.navbar .button-login:focus:hover {
+    color: #fff;
+    background: #25b97c;
+}
+
 .navbar .dropdown ul {
     display: block;
     position: absolute;
