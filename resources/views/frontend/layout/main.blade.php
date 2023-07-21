@@ -29,6 +29,11 @@
   @stack('custom-style')
 
   <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #444;
+    }
+
     .text-open-sans {
       font-family: 'Open Sans', sans-serif;
     }
