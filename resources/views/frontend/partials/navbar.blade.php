@@ -55,7 +55,7 @@
         {{-- Lapor! --}}
         <li><a class="getstarted scrollto" href="#"><i class="bi bi-send-exclamation-fill"></i>&nbsp;LAPOR !</a></li>
         {{-- Login --}}
-        <li><a class="button-login scrollto" href="#"><i class="bi bi-box-arrow-in-right"></i>&nbsp;Login</a></li>
+        <li><a class="button-login scrollto" href="/login"><i class="bi bi-box-arrow-in-right"></i>&nbsp;Login</a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav>
