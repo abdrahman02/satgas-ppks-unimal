@@ -11,7 +11,8 @@
                         </div>
                         <h4 class="text-center">PENDAFTARAN</h4>
                         <h6 class="fw-light text-center">Silahkan mengisi formulir dibawah ini.</h6>
-                        <form class="pt-3">
+                        <form class="pt-3" action="{{ route('registrasi.store') }}" method="POST">
+                            @csrf
                             <div class="form-group">
                                 <input type="text"
                                     class="form-control form-control-lg @error('name') is-invalid @enderror" id="name"
@@ -47,12 +48,23 @@
                             @enderror
 
                             <div class="form-group">
-                                <input type=" password"
+                                <input type="password"
                                     class="form-control form-control-lg @error('password') is-invalid @enderror"
-                                    id="password" placeholder="Masukkan password" name="password" required
-                                    value="{{ old('password') }}">
+                                    id="password" placeholder="Masukkan password" name="password" required>
                             </div>
                             @error('password')
+                            <div class="invalid-feedback">
+                                <small>{{ $message }}</small>
+                            </div>
+                            @enderror
+
+                            <div class="form-group">
+                                <input type="password"
+                                    class="form-control form-control-lg @error('password_confirmation') is-invalid @enderror"
+                                    id="password_confirmation" placeholder="Masukkan ulang password"
+                                    name="password_confirmation" required>
+                            </div>
+                            @error('password_confirmation')
                             <div class="invalid-feedback">
                                 <small>{{ $message }}</small>
                             </div>
