@@ -1,8 +1,8 @@
 <div class="footer">
     <div class="copyright">
         <p>
-            Copyright &copy; Designed & Developed by
-            <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018
+            &copy; Copyright <strong><span>SATGAS PPKS UNIMAL</span></strong>. All Rights Reserved
+            Designed by <a href="https://github.com/abdrahman02" target="blank">M. Abdul Rahman</a>
         </p>
     </div>
 </div>
