@@ -39,7 +39,7 @@
                 <ul aria-expanded="false">
                     <li><a href="#">Petugas</a></li>
                     <li><a href="#">Author</a></li>
-                    <li><a href="#">Pengguna</a></li>
+                    <li><a href="/dashboard/pengguna">Pengguna</a></li>
                 </ul>
             </li>
         </ul>
