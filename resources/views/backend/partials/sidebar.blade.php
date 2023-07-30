@@ -37,8 +37,8 @@
                     <i class="fa fa-users menu-icon"></i><span class="nav-text">Pengguna</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="#">Petugas</a></li>
-                    <li><a href="#">Author</a></li>
+                    <li><a href="/dashboard/petugas">Petugas</a></li>
+                    <li><a href="/dashboard/author">Author</a></li>
                     <li><a href="/dashboard/pengguna">Pengguna</a></li>
                 </ul>
             </li>

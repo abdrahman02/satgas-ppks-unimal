@@ -6,7 +6,7 @@
         <div class="col p-md-0">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Pengguna</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Petugas</a></li>
             </ol>
         </div>
     </div>
@@ -15,7 +15,7 @@
     <div class="container-fluid">
         <div class="card custom-card">
             <div class="card-header border-bottom">
-                <h3 class="card-title">Daftar Akun Pengguna Website</h3>
+                <h3 class="card-title">Daftar Akun Petugas Website</h3>
             </div>
             <div class="card-body">
 
@@ -31,21 +31,21 @@
                 @endif
 
                 <div class="table-responsive">
-                    @if ($pengguna->isNotEmpty())
+                    @if ($petugas->isNotEmpty())
                     <table class="table border text-nowrap text-md-nowrap">
                         <thead>
                             <tr>
                                 <th class="text-center border-bottom-0">No</th>
-                                <th class="text-center border-bottom-0">Nama Pengguna(ID Pengguna)</th>
+                                <th class="text-center border-bottom-0">Nama Petugas(ID Petugas)</th>
                                 <th class="text-center border-bottom-0">Email </th>
                                 <th class="text-center border-bottom-0">Username</th>
                                 <th class="text-center border-bottom-0">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pengguna as $key => $item)
+                            @foreach ($petugas as $key => $item)
                             <tr>
-                                <td class="text-center">{{ $pengguna->firstItem() + $key }}</td>
+                                <td class="text-center">{{ $petugas->firstItem() + $key }}</td>
                                 <td>{{ Str::words($item->name, 4) }}({{ $item->id }})</td>
                                 <td>{{ $item->email }}</td>
                                 <td>{{ $item->username }}</td>
@@ -58,7 +58,7 @@
                                         onclick="if(confirm('Apakah anda yakin?')) {
                                         event.preventDefault(); document.getElementById('delete-form{{ $item->id }}').submit()};">
                                         <i class="fa fa-trash"></i>
-                                        <form action="{{ route('pengguna.destroy', $item->id) }}" method="post"
+                                        <form action="{{ route('petugas.destroy', $item->id) }}" method="post"
                                             id="delete-form{{ $item->id }}" class="d-none">
                                             @csrf
                                             @method('delete')
@@ -75,7 +75,7 @@
                         @endif
                     </table>
                     <div class="d-flex justify-content-center">
-                        {{ $pengguna->links() }}
+                        {{ $petugas->links() }}
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@
 
 
 {{-- Modal Lihat Data --}}
-@foreach ($pengguna as $item)
+@foreach ($petugas as $item)
 @php
 $id = $item->id;
 @endphp
@@ -98,14 +98,14 @@ $id = $item->id;
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Detail Informasi Akun Pengguna Website</h5>
+                <h5 class="modal-title">Detail Informasi Akun Petugas Website</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <span><strong>AKUN</strong></span>
                 <div class="row mb-3">
                     <div class="col-lg-6 col-md-6 col-sm-6">
-                        Nama Pelanggan (ID Pelanggan)
+                        Nama Petugas (ID Petugas)
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         : {{ $item->name }}({{ $item->id }})
