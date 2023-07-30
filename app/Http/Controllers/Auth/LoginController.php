@@ -22,9 +22,9 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->route('login');
-        }
+        // if ($validator->fails()) {
+        //     return back()->with('loginError', 'Email/username atau password salah!')->withErrors($validator);
+        // }
 
         $credentials = $request->only('email_or_username', 'password');
 
@@ -35,10 +35,10 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Jika login berhasil
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard.index')->with('success', 'Berhasil masuk!');
         } else {
             // Jika login gagal
-            return redirect()->route('login')->with('error', 'Invalid credentials')->withInput();
+            return back()->with('loginError', 'Email/username atau password salah!')->withErrors($validator);
         }
     }
 
