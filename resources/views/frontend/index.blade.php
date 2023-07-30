@@ -46,7 +46,7 @@
           @endif
           <h3>{{ $item->judul_berita }}</h3>
           <p>
-            {{ Str::words($item->body, 5) }}
+            {!! Str::words($item->body, 5) !!}
           </p>
         </div>
       </div>

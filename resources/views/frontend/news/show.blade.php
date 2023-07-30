@@ -41,8 +41,8 @@
 
                         <div class="entry-meta">
                             <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">{{
-                                        $berita->user->name }}</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <span href="#">{{
+                                        $berita->user->name }}</span></li>
                                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i>
                                     <span>{{ $berita->created_at->diffForHumans() }}</span>
                                 </li>

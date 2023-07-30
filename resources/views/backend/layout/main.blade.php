@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="{{ asset('backend/plugins/chartist/css/chartist.min.css') }}" />
     <link rel="stylesheet"
         href="{{ asset('backend/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css') }}" />
+    {{-- Trix Editor --}}
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
     <!-- Custom Stylesheet -->
     <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet" />
 </head>
@@ -93,6 +96,8 @@
     <script src="{{ asset('backend/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js') }}"></script>
 
     <script src="{{ asset('backend/js/dashboard/dashboard-1.js') }}"></script>
+
+    @stack('custom-script')
 </body>
 
 </html>
