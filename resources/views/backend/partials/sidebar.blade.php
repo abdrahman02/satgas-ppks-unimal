@@ -8,7 +8,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" aria-expanded="false">
+                <a href="{{ route('news.index') }}" aria-expanded="false">
                     <i class="fa fa-newspaper-o menu-icon"></i><span class="nav-text">Berita</span>
                 </a>
             </li>
