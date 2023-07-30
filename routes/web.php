@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Backend\DashboardBeritaController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\DashboardPenggunaController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Frontend\BeritaController;
 use App\Http\Controllers\Frontend\PengurusController;
@@ -46,10 +47,11 @@ Route::middleware('guest')->group(function () {
 
 // Route All Role
 Route::middleware('auth')->group(function () {
-    Route::resource('/dashboard/news', DashboardBeritaController::class);
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::put('/registration/{id}', [RegistrationController::class, 'update'])->name('registrasi.update');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::resource('/dashboard/news', DashboardBeritaController::class);
+    Route::resource('/dashboard/pengguna', DashboardPenggunaController::class);
 });
 
 Route::resource('/profile', ProfileController::class);
