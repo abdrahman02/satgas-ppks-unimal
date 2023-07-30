@@ -16,15 +16,15 @@
   <link href="{{ asset('img/logo-satgas-ppks-unimal.png') }}" rel="apple-touch-icon">
 
   <!-- plugins:css -->
-  <link rel="stylesheet" href="{{ asset('backend/vendors/feather/feather.css') }}">
-  <link rel="stylesheet" href="{{ asset('backend/vendors/mdi/css/materialdesignicons.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('backend/vendors/ti-icons/css/themify-icons.css') }}">
-  <link rel="stylesheet" href="{{ asset('backend/vendors/typicons/typicons.css') }}">
-  <link rel="stylesheet" href="{{ asset('backend/vendors/simple-line-icons/css/simple-line-icons.css') }}">
-  <link rel="stylesheet" href="{{ asset('backend/vendors/css/vendor.bundle.base.css') }}">
+  <link rel="stylesheet" href="{{ asset('auth/vendors/feather/feather.css') }}">
+  <link rel="stylesheet" href="{{ asset('auth/vendors/mdi/css/materialdesignicons.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('auth/vendors/ti-icons/css/themify-icons.css') }}">
+  <link rel="stylesheet" href="{{ asset('auth/vendors/typicons/typicons.css') }}">
+  <link rel="stylesheet" href="{{ asset('auth/vendors/simple-line-icons/css/simple-line-icons.css') }}">
+  <link rel="stylesheet" href="{{ asset('auth/vendors/css/vendor.bundle.base.css') }}">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="{{ asset('backend/css/vertical-layout-light/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('auth/css/vertical-layout-light/style.css') }}">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
 
@@ -58,17 +58,17 @@
   </script>
 
   <!-- plugins:js -->
-  <script src="{{ asset('backend/vendors/js/vendor.bundle.base.js') }}"></script>
+  <script src="{{ asset('auth/vendors/js/vendor.bundle.base.js') }}"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="{{ asset('backend/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+  <script src="{{ asset('auth/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
   <!-- End plugin js for this page -->
   <!-- inject:js -->
-  <script src="{{ asset('backend/js/off-canvas.js') }}"></script>
-  <script src="{{ asset('backend/js/hoverable-collapse.js') }}"></script>
-  <script src="{{ asset('backend/js/template.js') }}"></script>
-  <script src="{{ asset('backend/js/settings.js') }}"></script>
-  <script src="{{ asset('backend/js/todolist.js') }}"></script>
+  <script src="{{ asset('auth/js/off-canvas.js') }}"></script>
+  <script src="{{ asset('auth/js/hoverable-collapse.js') }}"></script>
+  <script src="{{ asset('auth/js/template.js') }}"></script>
+  <script src="{{ asset('auth/js/settings.js') }}"></script>
+  <script src="{{ asset('auth/js/todolist.js') }}"></script>
   <!-- endinject -->
 
   @stack('custom-script')

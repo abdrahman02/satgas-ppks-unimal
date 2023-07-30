@@ -36,4 +36,45 @@ class RegistrationController extends Controller
         // Redirect atau berikan response sesuai kebutuhan Anda
         return redirect()->route('login');
     }
+
+    public function update(Request $request, string $id)
+    {
+        if ($request->has('username') && $request->has('email')) {
+            $request->validate([
+                'username' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255',
+            ]);
+
+            $user = User::findOrFail($id);
+            $user->update([
+                'username' => $request->username,
+                'email' => $request->email,
+            ]);
+
+            return redirect()->back()->with('success', 'Email dan username berhasil diubah.');
+        }
+
+        if ($request->has('current_password') && $request->has('password')) {
+            // Validasi input sesuai kebutuhan
+            $request->validate([
+                'current_password' => 'required',
+                'password' => 'required|string|min:8|confirmed',
+            ]);
+
+            $user = User::findOrFail($id);
+
+            // Cek apakah password lama sesuai dengan yang ada di database
+            if (!Hash::check($request->current_password, $user->password)) {
+                return redirect()->back()->withErrors(['current_password' => 'Password lama tidak sesuai.']);
+            }
+
+            // Update password baru
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+
+            // Redirect atau kirim response berhasil mengubah password
+            return redirect()->back()->with('success', 'Password berhasil diubah.');
+        }
+    }
 }
