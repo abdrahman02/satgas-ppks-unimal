@@ -35,11 +35,7 @@
                 <li class="icons dropdown">
                     <div class="user-img c-pointer position-relative" data-toggle="dropdown">
                         <span class="activity active"></span>
-                        @if (!empty($user->biodata->foto))
-                        <img src="{{ asset('storage/profil/' . $user->biodata->foto) }}" height="40" width="40">
-                        @else
                         <img src="{{ asset('img/default-profile.jpg') }}" height="40" width="40">
-                        @endif
                     </div>
                     <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                         <div class="dropdown-content-body">
