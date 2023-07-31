@@ -27,9 +27,9 @@
                     <i class="fa fa-sitemap menu-icon"></i><span class="nav-text">Struktur Organisasi</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="#">Periode</a></li>
-                    <li><a href="#">Jabatan</a></li>
-                    <li><a href="#">Pengurus</a></li>
+                    <li><a href="/dashboard/periode">Periode</a></li>
+                    <li><a href="/dashboard/jabatan">Jabatan</a></li>
+                    <li><a href="/dashboard/pengurus">Pengurus</a></li>
                 </ul>
             </li>
             <li>
