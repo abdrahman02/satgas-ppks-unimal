@@ -20,8 +20,8 @@ class RegistrationController extends Controller
         // Validasi data yang diterima dari form
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
-            'email' => 'required|email|max:255|unique:users',
+            'username' => 'required|string|max:255|unique:users,username',
+            'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|confirmed'
         ]);
 
@@ -41,8 +41,8 @@ class RegistrationController extends Controller
     {
         if ($request->has('username') && $request->has('email')) {
             $request->validate([
-                'username' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255',
+                'username' => 'required|string|max:255|unique:users,username,' . $id,
+                'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             ]);
 
             $user = User::findOrFail($id);

@@ -17,4 +17,9 @@ class Pengurus extends Model
     {
         return $this->belongsTo(Jabatan::class);
     }
+
+    function periode(): BelongsTo
+    {
+        return $this->belongsTo(Periode::class);
+    }
 }

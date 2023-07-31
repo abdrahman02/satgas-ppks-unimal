@@ -4,17 +4,20 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegistrationController;
-use App\Http\Controllers\Backend\DashboardAuthorController;
-use App\Http\Controllers\Backend\DashboardBeritaController;
-use App\Http\Controllers\Backend\DashboardController;
-use App\Http\Controllers\Backend\DashboardPenggunaController;
-use App\Http\Controllers\Backend\DashboardPetugasController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Frontend\BeritaController;
+use App\Http\Controllers\Auth\RegistrationController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Frontend\PengurusController;
 use App\Http\Controllers\Frontend\DasarHukumController;
 use App\Http\Controllers\Frontend\FilosofiLogoController;
+use App\Http\Controllers\Backend\DashboardAuthorController;
+use App\Http\Controllers\Backend\DashboardBeritaController;
+use App\Http\Controllers\Backend\DashboardJabatanController;
+use App\Http\Controllers\Backend\DashboardPeriodeController;
+use App\Http\Controllers\Backend\DashboardPetugasController;
+use App\Http\Controllers\Backend\DashboardPenggunaController;
+use App\Http\Controllers\Backend\DashboardPengurusController;
 use App\Http\Controllers\Frontend\KekerasanSeksualController;
 
 /*
@@ -65,6 +68,13 @@ Route::middleware('auth')->group(function () {
         'index',
         'destroy'
     ]);
+    Route::resource('/dashboard/periode', DashboardPeriodeController::class)->except([
+        'edit', 'create', 'show'
+    ]);
+    Route::resource('/dashboard/jabatan', DashboardJabatanController::class)->except([
+        'edit', 'create', 'show'
+    ]);
+    Route::resource('/dashboard/pengurus', DashboardPengurusController::class);
 });
 
 Route::resource('/profile', ProfileController::class);
