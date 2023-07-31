@@ -7,6 +7,8 @@ use App\Models\Biodata;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Image;
 
 class ProfileController extends Controller
 {

@@ -22,6 +22,10 @@
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
     <!-- Custom Stylesheet -->
     <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet" />
+    <!-- Tambahkan ini di head untuk mengimpor CSS cropperjs -->
+    <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.min.css">
+
+    @stack('custom-style')
 </head>
 
 <body>
@@ -71,6 +75,8 @@
     <!--**********************************
         Scripts
     ***********************************-->
+    {{-- Jquery --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('backend/plugins/common/common.min.js') }}"></script>
     <script src="{{ asset('backend/js/custom.min.js') }}"></script>
     <script src="{{ asset('backend/js/settings.js') }}"></script>
@@ -96,6 +102,9 @@
     <script src="{{ asset('backend/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js') }}"></script>
 
     <script src="{{ asset('backend/js/dashboard/dashboard-1.js') }}"></script>
+
+    <script src="{{ asset('backend/plugins/cropperjs/dist/cropper.js') }}"></script>
+
 
     @stack('custom-script')
 </body>

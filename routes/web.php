@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::put('/registration/{id}', [RegistrationController::class, 'update'])->name('registrasi.update');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::resource('/profile', ProfileController::class);
     Route::resource('/dashboard/news', DashboardBeritaController::class);
     Route::resource('/dashboard/pengguna', DashboardPenggunaController::class)->only([
         'index',
@@ -77,7 +78,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('/dashboard/pengurus', DashboardPengurusController::class);
 });
 
-Route::resource('/profile', ProfileController::class);
 
 // Route::get('/', function () {
 //     return view('welcome');

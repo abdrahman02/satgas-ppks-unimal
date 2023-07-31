@@ -42,13 +42,8 @@
             <div class="row">
                 <div class="col-md-3 border-right">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                        @if (!empty($user->biodata->foto))
-                        <img src="{{ asset('storage/profil/' . $user->biodata->foto) }}" class="rounded-circle mt-5"
+                        <img id="profil-img" src="{{ asset('img/default-profile.jpg') }}" class="rounded-circle mt-5"
                             style="width: 200px;">
-                        @else
-                        <img src="{{ asset('img/default-profile.jpg') }}" class="rounded-circle mt-5"
-                            style="width: 200px;">
-                        @endif
                         <span class="font-weight-bold">{{ $user->name }}</span>
                         <span class="text-black-50">{{ $user->email }}</span>
                         <span> </span>
