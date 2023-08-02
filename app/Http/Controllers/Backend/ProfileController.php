@@ -76,7 +76,7 @@ class ProfileController extends Controller
             'status' => 'nullable|string|max:255',
             'tempat_lahir' => 'nullable|string|max:255',
             'tanggal_lahir' => 'nullable|date',
-            'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
+            'jenis_kelamin' => 'nullable',
             'no_telepon' => 'required|string|max:255',
             'alamat' => 'required|string',
         ]);

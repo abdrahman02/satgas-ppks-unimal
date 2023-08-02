@@ -49,7 +49,7 @@ class DashboardBeritaController extends Controller
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
-            $file->storeAs('public/berita', $filename);
+            $file->storeAs('public/berita/', $filename);
             $item->image = $filename;
         }
 

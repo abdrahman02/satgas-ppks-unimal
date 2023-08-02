@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class DashboardAuthorController extends Controller
 {
@@ -31,7 +32,25 @@ class DashboardAuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validasi data yang diterima dari form
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|alpha_num|max:255|unique:users,username',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|confirmed'
+        ]);
+
+        // Lakukan sesuatu dengan data yang telah divalidasi, misalnya menyimpan ke database
+        $user = new User();
+        $user->name = $validatedData['name'];
+        $user->username = $validatedData['username'];
+        $user->email = $validatedData['email'];
+        $user->role = 'author';
+        $user->password = Hash::make($validatedData['password']);
+        $user->save();
+
+        // Redirect atau berikan response sesuai kebutuhan Anda
+        return back()->with('success', 'Sukses, 1 Akun berhasil ditambahkan!');
     }
 
     /**
@@ -55,7 +74,31 @@ class DashboardAuthorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validasi data yang diterima dari form
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username,' . $id,
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed'
+        ]);
+
+        $user = User::findOrFail($id);
+
+        // Cek apakah password lama sesuai dengan yang ada di database
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->withErrors(['current_password' => 'Password lama tidak sesuai.']);
+        }
+
+        $user->name = $validatedData['name'];
+        $user->username = $validatedData['username'];
+        $user->email = $validatedData['email'];
+        $user->password = Hash::make($validatedData['new_password']);
+
+        $user->save();
+
+        // Redirect atau berikan response sesuai kebutuhan Anda
+        return back()->with('success', 'Sukses, 1 Akun berhasil diperbaharui!');
     }
 
     /**

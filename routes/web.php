@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\DashboardPeriodeController;
 use App\Http\Controllers\Backend\DashboardPetugasController;
 use App\Http\Controllers\Backend\DashboardPenggunaController;
 use App\Http\Controllers\Backend\DashboardPengurusController;
+use App\Http\Controllers\Backend\DashboardUserPengaduan;
 use App\Http\Controllers\Frontend\KekerasanSeksualController;
 
 /*
@@ -59,15 +60,21 @@ Route::middleware('auth')->group(function () {
     Route::resource('/dashboard/news', DashboardBeritaController::class);
     Route::resource('/dashboard/pengguna', DashboardPenggunaController::class)->only([
         'index',
-        'destroy'
+        'destroy',
+        'store',
+        'update'
     ]);
     Route::resource('/dashboard/petugas', DashboardPetugasController::class)->only([
         'index',
-        'destroy'
+        'destroy',
+        'store',
+        'update'
     ]);
     Route::resource('/dashboard/author', DashboardAuthorController::class)->only([
         'index',
-        'destroy'
+        'destroy',
+        'store',
+        'update'
     ]);
     Route::resource('/dashboard/periode', DashboardPeriodeController::class)->except([
         'edit', 'create', 'show'
@@ -76,6 +83,7 @@ Route::middleware('auth')->group(function () {
         'edit', 'create', 'show'
     ]);
     Route::resource('/dashboard/pengurus', DashboardPengurusController::class);
+    Route::resource('/dashboard/laporan', DashboardUserPengaduan::class);
 });
 
 
