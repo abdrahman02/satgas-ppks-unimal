@@ -30,6 +30,24 @@
                 </div>
                 @endif
 
+                {{-- Error --}}
+                @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span>
+                    </button>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
+                <a href="#" class="btn btn-primary float-end" data-toggle="modal" data-target="#modal-tbh-item">
+                    <i class="fa fa-plus-circle"></i>&nbsp; Tambah Data
+                </a>
+
                 <div class="table-responsive">
                     @if ($author->isNotEmpty())
                     <table class="table border text-nowrap text-md-nowrap">
@@ -54,7 +72,11 @@
                                         data-target="#modal-lht-item{{ $item->id }}">
                                         <i class="fa fa-eye"></i>
                                     </a>
-                                    <a class="label label-danger link-danger ml-3" title="Hapus" href="#"
+                                    <a class="label label-warning link-warning mx-3" title="Edit" href="#"
+                                        data-toggle="modal" data-target="#modal-ubh-item{{ $item->id }}">
+                                        <i class="fa fa-pencil-square-o"></i>
+                                    </a>
+                                    <a class="label label-danger link-danger" title="Hapus" href="#"
                                         onclick="if(confirm('Apakah anda yakin?')) {
                                         event.preventDefault(); document.getElementById('delete-form{{ $item->id }}').submit()};">
                                         <i class="fa fa-trash"></i>
@@ -83,6 +105,62 @@
     </div>
     <!-- #/ container -->
 </div>
+
+
+
+
+
+
+{{-- Modal Tambah Data --}}
+<div class="modal fade" id="modal-tbh-item" role="dialog" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="{{ route('author.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="p-3">
+                        <div class="row mb-3">
+                            <label for="name" class="col-sm-2 col-lg-12">Nama Author</label>
+                            <input type="text" name="name" id="name"
+                                class="form-control @error('name') is-invalid @enderror"
+                                placeholder="Masukkan nama author" value="{{ old('name') }}" autofocus required>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="username" class="col-sm-2 col-lg-12">Username</label>
+                            <input type="text" name="username" id="username"
+                                class="form-control @error('username') is-invalid @enderror"
+                                placeholder="Masukkan username author" value="{{ old('username') }}" required>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="email" class="col-sm-2 col-lg-12">Email</label>
+                            <input type="email" name="email" id="email"
+                                class="form-control @error('email') is-invalid @enderror"
+                                placeholder="Masukkan email author" value="{{ old('email') }}" required>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="password" class="col-sm-2 col-lg-12">Password</label>
+                            <input type="password" name="password" id="password"
+                                class="form-control @error('password') is-invalid @enderror"
+                                placeholder="Masukkan password author" value="{{ old('password') }}" required>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="password_confirmation" class="col-sm-2 col-lg-12">Konfirmasi Password</label>
+                            <input type="password" name="password_confirmation" id="password_confirmation"
+                                class="form-control @error('password_confirmation') is-invalid @enderror"
+                                placeholder="Masukkan ulang password author" value="{{ old('password_confirmation') }}"
+                                required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Tambah Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -232,6 +310,74 @@ $id = $item->id;
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+
+
+
+
+
+@foreach ($author as $item)
+@php
+$id = $item->id;
+@endphp
+<div class="modal fade" id="modal-ubh-item{{ $id }}" role="dialog" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="{{ route('author.update', $id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="p-3">
+                        <div class="row mb-3">
+                            <label for="name" class="col-sm-2 col-lg-12">Nama author</label>
+                            <input type="text" name="name" id="name"
+                                class="form-control @error('name') is-invalid @enderror"
+                                placeholder="Masukkan nama author" value="{{ old('name', $item->name) }}" autofocus
+                                required>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="username" class="col-sm-2 col-lg-12">Username</label>
+                            <input type="text" name="username" id="username"
+                                class="form-control @error('username') is-invalid @enderror"
+                                placeholder="Masukkan username author" value="{{ old('username', $item->username) }}"
+                                required>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="email" class="col-sm-2 col-lg-12">Email</label>
+                            <input type="email" name="email" id="email"
+                                class="form-control @error('email') is-invalid @enderror"
+                                placeholder="Masukkan email author" value="{{ old('email', $item->email) }}" required>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="current_password" class="col-sm-2 col-lg-12">Password Lama</label>
+                            <input type="password" name="current_password" id="current_password"
+                                class="form-control @error('current_password') is-invalid @enderror"
+                                placeholder="Masukkan password sekarang author" required>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="new_password" class="col-sm-2 col-lg-12">Password Baru</label>
+                            <input type="password" name="new_password" id="new_password"
+                                class="form-control @error('new_password') is-invalid @enderror"
+                                placeholder="Masukkan password baru author" required>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="new_password_confirmation" class="col-sm-2 col-lg-12">Konfirmasi Password
+                                Baru</label>
+                            <input type="password" name="new_password_confirmation" id="new_password_confirmation"
+                                class="form-control @error('new_password_confirmation') is-invalid @enderror"
+                                placeholder="Masukkan password ulang baru author" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Ubah Data</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

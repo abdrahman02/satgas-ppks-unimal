@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Biodata::class);
     }
+
+    public function pengaduan(): HasMany
+    {
+        return $this->hasMany(Pengaduan::class);
+    }
 }

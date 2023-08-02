@@ -20,7 +20,7 @@ class RegistrationController extends Controller
         // Validasi data yang diterima dari form
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users,username',
+            'username' => 'required|string|alpha_num|max:255|unique:users,username',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|confirmed'
         ]);

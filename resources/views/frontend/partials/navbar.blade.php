@@ -41,23 +41,15 @@
         <li><a class="nav-link scrollto {{ Request::is('berita*') ? 'active' : '' }}" href="/berita"><i
               class="bi bi-newspaper"></i>&nbsp;Berita</a></li>
 
-        {{-- Survei --}}
-        <li class="dropdown"><a href="#" class=""><i class="bi bi-ui-checks"></i>&nbsp;<span>Kuesioner</span> <i
-              class="bi bi-chevron-down"></i></a>
-          <ul>
-            <li><a class="nav-link scrollto" href="#">Kotak Saran</a></li>
-            <li><a class="nav-link scrollto" href="#">Survei</a></li>
-          </ul>
-        </li>
-      </ul>
-
-      <ul>
-        {{-- Lapor! --}}
-        <li><a class="getstarted scrollto" href="#"><i class="bi bi-send-exclamation-fill"></i>&nbsp;LAPOR !</a></li>
-        {{-- Login --}}
-        <li><a class="button-login scrollto" href="/login"><i class="bi bi-box-arrow-in-right"></i>&nbsp;Login</a></li>
-      </ul>
-      <i class="bi bi-list mobile-nav-toggle"></i>
+        <ul>
+          {{-- Lapor! --}}
+          <li><a class="getstarted scrollto" href="/dashboard/laporan"><i
+                class="bi bi-send-exclamation-fill"></i>&nbsp;LAPOR !</a></li>
+          {{-- Login --}}
+          <li><a class="button-login scrollto" href="/login"><i class="bi bi-box-arrow-in-right"></i>&nbsp;Login</a>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
     </nav>
     <!-- .navbar -->
   </div>

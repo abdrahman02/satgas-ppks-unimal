@@ -46,7 +46,7 @@
                             style="width: 200px;">
                         <span class="font-weight-bold">{{ $user->name }}</span>
                         <span class="text-black-50">{{ $user->email }}</span>
-                        <span> </span>
+                        <span class="badge badge-info">{{ $user->role }}</span>
                     </div>
                 </div>
                 <div class="col-md-5 border-right">

@@ -13,14 +13,9 @@
                 </a>
             </li>
             <li>
-                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="fa fa-list-ol menu-icon"></i><span class="nav-text">Kuesioner</span>
+                <a href="{{ route('laporan.index') }}" aria-expanded="false">
+                    <i class="fa fa-paper-plane-o menu-icon"></i><span class="nav-text">Pengaduan</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li><a href="#">Laporan</a></li>
-                    <li><a href="#">Survei</a></li>
-                    <li><a href="#">Kotak Saran</a></li>
-                </ul>
             </li>
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
