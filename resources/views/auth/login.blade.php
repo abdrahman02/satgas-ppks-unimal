@@ -69,9 +69,9 @@
                             disini</a></p>
 
                     <div class="mb-2 d-flex justify-content-center">
-                        <button type="button" class="btn btn-block btn-google auth-form-btn">
+                        <a href="{{ route('redirectToGoogle') }}" class="btn btn-block btn-google auth-form-btn">
                             <i class="mdi mdi-google"></i>&nbsp;Masuk menggunakan Google
-                        </button>
+                        </a>
                     </div>
                     <div class="mb-2 d-flex justify-content-center">
                         <a href="/" class="btn btn-block btn-warning auth-form-btn">
