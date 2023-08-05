@@ -46,6 +46,8 @@ Route::resource('/kekerasan-seksual', KekerasanSeksualController::class)->only('
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
+    Route::get('/auth/google', [LoginController::class, 'redirectToGoogle'])->name('redirectToGoogle');
+    Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallback'])->name('handleGoogleCallback');
     Route::get('/registration', [RegistrationController::class, 'index'])->name('registrasi.index');
     Route::post('/registration', [RegistrationController::class, 'store'])->name('registrasi.store');
 });
