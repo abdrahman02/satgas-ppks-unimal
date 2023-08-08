@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Frontend\PengurusController;
 use App\Http\Controllers\Frontend\DasarHukumController;
+use App\Http\Controllers\Backend\DashboardUserPengaduan;
 use App\Http\Controllers\Frontend\FilosofiLogoController;
 use App\Http\Controllers\Backend\DashboardAuthorController;
 use App\Http\Controllers\Backend\DashboardBeritaController;
@@ -18,7 +20,6 @@ use App\Http\Controllers\Backend\DashboardPeriodeController;
 use App\Http\Controllers\Backend\DashboardPetugasController;
 use App\Http\Controllers\Backend\DashboardPenggunaController;
 use App\Http\Controllers\Backend\DashboardPengurusController;
-use App\Http\Controllers\Backend\DashboardUserPengaduan;
 use App\Http\Controllers\Frontend\KekerasanSeksualController;
 
 /*
@@ -57,9 +58,13 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::put('/registration/{id}', [RegistrationController::class, 'update'])->name('registrasi.update');
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::resource('/profile', ProfileController::class);
-    Route::resource('/dashboard/news', DashboardBeritaController::class);
+});
+
+
+// Route Admin
+Route::middleware('admin')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::resource('/dashboard/pengguna', DashboardPenggunaController::class)->only([
         'index',
         'destroy',
@@ -78,6 +83,12 @@ Route::middleware('auth')->group(function () {
         'store',
         'update'
     ]);
+});
+
+
+// Route Author
+Route::middleware('author')->group(function () {
+    Route::resource('/dashboard/news', DashboardBeritaController::class);
     Route::resource('/dashboard/periode', DashboardPeriodeController::class)->except([
         'edit', 'create', 'show'
     ]);
@@ -85,10 +96,27 @@ Route::middleware('auth')->group(function () {
         'edit', 'create', 'show'
     ]);
     Route::resource('/dashboard/pengurus', DashboardPengurusController::class);
+});
+
+
+
+// Route Petugas dan Pengguna
+Route::middleware('petugas_pengguna')->group(function () {
     Route::resource('/dashboard/laporan', DashboardUserPengaduan::class);
 });
 
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
+// Route Pengalihan
+Route::get('/home', function () {
+    $user = Auth::user();
+    if ($user && ($user->role == 'admin')) {
+        return redirect()->route('dashboard.index');
+    } else if ($user && ($user->role == 'author')) {
+        return redirect()->route('dashboard.news');
+    } else if ($user && ($user->role == 'petugas' || $user->role == 'pengguna')) {
+        return redirect()->route('dashboard.laporan');
+    } else {
+        return redirect('/');
+    }
+});
