@@ -2,21 +2,40 @@
     <div class="nk-nav-scroll">
         <ul class="metismenu" id="menu">
             <li class="nav-label">Dashboard</li>
+
+            @can('admin')
             <li>
                 <a href="#" aria-expanded="false">
                     <i class="fa fa-bar-chart menu-icon"></i><span class="nav-text">Overview</span>
                 </a>
             </li>
+            @endcan
+
+            @can('author')
             <li>
                 <a href="{{ route('news.index') }}" aria-expanded="false">
                     <i class="fa fa-newspaper-o menu-icon"></i><span class="nav-text">Berita</span>
                 </a>
             </li>
+            @endcan
+
+            @can('petugas')
             <li>
                 <a href="{{ route('laporan.index') }}" aria-expanded="false">
                     <i class="fa fa-paper-plane-o menu-icon"></i><span class="nav-text">Pengaduan</span>
                 </a>
             </li>
+            @endcan
+
+            @can('pengguna')
+            <li>
+                <a href="{{ route('laporan.index') }}" aria-expanded="false">
+                    <i class="fa fa-paper-plane-o menu-icon"></i><span class="nav-text">Pengaduan</span>
+                </a>
+            </li>
+            @endcan
+
+            @can('author')
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-sitemap menu-icon"></i><span class="nav-text">Struktur Organisasi</span>
@@ -27,6 +46,9 @@
                     <li><a href="/dashboard/pengurus">Pengurus</a></li>
                 </ul>
             </li>
+            @endcan
+
+            @can('admin')
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-users menu-icon"></i><span class="nav-text">Pengguna</span>
@@ -37,6 +59,7 @@
                     <li><a href="/dashboard/pengguna">Pengguna</a></li>
                 </ul>
             </li>
+            @endcan
         </ul>
     </div>
 </div>

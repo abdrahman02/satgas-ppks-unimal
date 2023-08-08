@@ -113,9 +113,9 @@ Route::get('/home', function () {
     if ($user && ($user->role == 'admin')) {
         return redirect()->route('dashboard.index');
     } else if ($user && ($user->role == 'author')) {
-        return redirect()->route('dashboard.news');
+        return redirect()->route('news.index');
     } else if ($user && ($user->role == 'petugas' || $user->role == 'pengguna')) {
-        return redirect()->route('dashboard.laporan');
+        return redirect()->route('laporan.index');
     } else {
         return redirect('/');
     }
