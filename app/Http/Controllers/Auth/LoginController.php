@@ -37,8 +37,14 @@ class LoginController extends Controller
         unset($credentials['email_or_username']);
 
         if (Auth::attempt($credentials)) {
-            // Jika login berhasil
-            return redirect()->route('dashboard.index')->with('success', 'Berhasil masuk!');
+            $request->session()->regenerate();
+            if (auth()->user()->role == 'admin') {
+                return redirect()->intended('/dashboard');
+            } elseif (auth()->user()->role == 'author') {
+                return redirect()->intended('/dashboard/news');
+            } elseif (auth()->user()->role == 'pengguna' || auth()->user()->role == 'petugas') {
+                return redirect()->intended('/dashboard/laporan');
+            }
         } else {
             // Jika login gagal
             return back()->with('loginError', 'Email/username atau password salah!')->withErrors($validator);
@@ -75,7 +81,7 @@ class LoginController extends Controller
             if ($existingUser) {
                 // Jika akun dengan email ini sudah ada, maka langsung login
                 auth()->login($existingUser);
-                return redirect()->route('dashboard.index');
+                return redirect()->route('laporan.index');
             } else {
                 // Jika belum ada, buat akun baru
                 $newUser = new User();
@@ -86,7 +92,7 @@ class LoginController extends Controller
                 $newUser->save();
 
                 auth()->login($newUser);
-                return redirect()->route('dashboard.index');
+                return redirect()->route('laporan.index');
             }
         } catch (\Exception $e) {
             // Jika terjadi error, redirect kembali ke halaman login
