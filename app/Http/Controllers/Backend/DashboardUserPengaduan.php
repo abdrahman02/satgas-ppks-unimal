@@ -125,8 +125,8 @@ class DashboardUserPengaduan extends Controller
     public function destroy(string $id)
     {
         $item = Pengaduan::findorFail($id);
-        if ($item->image) {
-            Storage::delete('public/pengaduan/' . $item->image);
+        if ($item->bukti) {
+            Storage::delete('public/pengaduan/' . $item->bukti);
         }
         $item->delete();
 

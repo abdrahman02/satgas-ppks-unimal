@@ -6,19 +6,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function index()
-    {
-        return response()->json([
-            'success' => true,
-            'data' => User::all()
-        ]);
-    }
-
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -27,7 +20,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => 'Validation Error'], 401);
+            return response()->json(['error' => 'Validation Error']);
         }
 
         $loginField = filter_var($request->email_or_username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
@@ -38,14 +31,23 @@ class AuthController extends Controller
         ];
 
         if (!Auth::attempt($credentials)) {
-            return response()->json(['error' => 'Email/username ataupun password salah'], 401);
+            return response()->json(['error' => 'Email/username ataupun password salah']);
         }
 
         $user = $request->user();
-        $token = $user->createToken('Token Name')->accessToken;
+        $token = $user->createToken('Token Name')->plainTextToken;
 
         return response()->json([
+            'alert' => 'Berhasil login!',
             'token' => $token
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json([
+            'alert' => 'Berhasil logout!'
         ]);
     }
 
@@ -60,7 +62,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => 'Validation Error'], 401);
+            return response()->json(['error' => 'Validation Error']);
         }
 
         $user = new User();
@@ -70,6 +72,6 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return response()->json(['message' => 'User registered successfully'], 201);
+        return response()->json(['alert' => 'Registrasi berhasil!']);
     }
 }
