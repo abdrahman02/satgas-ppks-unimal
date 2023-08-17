@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\Auth\AuthController;
+use App\Http\Controllers\API\PengaduanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,10 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/dataonprocess', [PengaduanController::class, 'getDataOnProcess']);
+    Route::get('/dataselesai', [PengaduanController::class, 'getDataSelesai']);
+    Route::post('/laporan', [PengaduanController::class, 'store']);
+    Route::get('/laporan/{id}', [PengaduanController::class, 'show']);
+    Route::delete('/laporan/{id}', [PengaduanController::class, 'destroy']);
 });
 
-Route::get('/getalluser', [AuthController::class, 'index']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
