@@ -17,7 +17,6 @@ class PengaduanController extends Controller
         $dataOnProcess = $data->where('progres', 'Sedang Proses')->get();
 
         return response()->json([
-            'alert' => 'Sukses mendapatkan data yang sedang diproses!',
             'user' => $user,
             'Data on process' => $dataOnProcess
         ]);
@@ -30,7 +29,6 @@ class PengaduanController extends Controller
         $dataSelesai = $data->where('progres', 'Selesai')->get();
 
         return response()->json([
-            'alert' => 'Sukses mendapatkan data yang selesai diproses!',
             'user' => $user,
             'Data Selesai' => $dataSelesai
         ]);
@@ -89,7 +87,6 @@ class PengaduanController extends Controller
         $item = Pengaduan::findOrFail($id);
 
         return response()->json([
-            'alert' => 'Sukses mendapatkan 1 laporan!',
             'data' => $item
         ]);
     }

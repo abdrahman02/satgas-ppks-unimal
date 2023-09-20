@@ -15,7 +15,15 @@ class BeritaController extends Controller
     {
         $beritas = Berita::latest()->paginate(8);
         $lainnya = Berita::all();
-        $otherNews = $lainnya->random(5);
+        // Pastikan jumlah item yang diambil tidak melebihi jumlah item yang tersedia
+        $jumlahItemDibutuhkan = 5;
+        $jumlahItemTersedia = count($lainnya);
+
+        if ($jumlahItemTersedia >= $jumlahItemDibutuhkan) {
+            $otherNews = $lainnya->random($jumlahItemDibutuhkan);
+        } else {
+            $otherNews = $lainnya;
+        }
         $title = 'Berita';
         return view('frontend.news.index', compact('beritas', 'otherNews', 'title'));
     }
