@@ -14,15 +14,6 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email_or_username' => 'required|string',
-            'password' => 'required|string',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['message' => 'Validation Error']);
-        }
-
         $loginField = filter_var($request->email_or_username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
         $credentials = [
@@ -53,17 +44,6 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string',
-            'username' => 'required|string|unique:users',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'password_confirmation' => 'required|string|same:password'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['message' => 'Validation Error']);
-        }
 
         $user = new User();
         $user->name = $request->name;
