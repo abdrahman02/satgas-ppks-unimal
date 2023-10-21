@@ -20,7 +20,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => 'Validation Error']);
+            return response()->json(['message' => 'Validation Error']);
         }
 
         $loginField = filter_var($request->email_or_username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
@@ -31,14 +31,14 @@ class AuthController extends Controller
         ];
 
         if (!Auth::attempt($credentials)) {
-            return response()->json(['error' => 'Email/username ataupun password salah']);
+            return response()->json(['message' => 'Email/username ataupun password salah']);
         }
 
         $user = $request->user();
         $token = $user->createToken('Token Name')->plainTextToken;
 
         return response()->json([
-            'alert' => 'Berhasil login!',
+            'message' => 'Berhasil login!',
             'token' => $token
         ]);
     }
@@ -62,7 +62,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => 'Validation Error']);
+            return response()->json(['message' => 'Validation Error']);
         }
 
         $user = new User();
@@ -72,6 +72,6 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return response()->json(['alert' => 'Registrasi berhasil!']);
+        return response()->json(['message' => 'Registrasi berhasil!', 'data' => $user]);
     }
 }
