@@ -28,6 +28,9 @@ class AuthController extends Controller
         $user = $request->user();
         $token = $user->createToken('Token Name')->plainTextToken;
 
+        // Lakukan pembaruan kolom remember_token pada tabel user
+        $user->update(['remember_token' => $token]);
+
         return response()->json([
             'message' => 'Berhasil login!',
             'token' => $token
@@ -36,10 +39,16 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
-        return response()->json([
-            'alert' => 'Berhasil logout!'
-        ]);
+        try {
+            $user = $request->user();
+            // Hapus semua token pengguna
+            $user->tokens()->delete();
+            // Setelah token dihapus, Anda dapat mengatur remember_token menjadi null
+            $user->update(['remember_token' => null]);
+            return response()->json(['message' => 'Berhasil logout dan menghapus token'], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Gagal logout', 'error' => $th], 500);
+        }
     }
 
     public function register(Request $request)

@@ -23,11 +23,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/dataonprocess', [PengaduanController::class, 'getDataOnProcess']);
     Route::get('/dataselesai', [PengaduanController::class, 'getDataSelesai']);
     Route::post('/laporan', [PengaduanController::class, 'store']);
+    Route::put('/laporan/edit/{id}', [PengaduanController::class, 'update']);
     Route::get('/laporan/{id}', [PengaduanController::class, 'show']);
     Route::delete('/laporan/{id}', [PengaduanController::class, 'destroy']);
-    Route::get('/berita', [BeritaController::class, 'index']);
-    Route::get('/berita/{id}', [BeritaController::class, 'show']);
-    Route::get('/profil', [ProfilController::class, 'index']);
+    Route::get('/profil', [ProfilController::class, 'getProfil']);
+    Route::put('/profil/edit', [ProfilController::class, 'editProfil']);
 });
 
 Route::post('/login', [AuthController::class, 'login']);
