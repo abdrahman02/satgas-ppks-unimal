@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Notifications\VerifyEmail;
 
 class LoginController extends Controller
 {
@@ -25,9 +26,6 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        // if ($validator->fails()) {
-        //     return back()->with('loginError', 'Email/username atau password salah!')->withErrors($validator);
-        // }
 
         $credentials = $request->only('email_or_username', 'password');
 
@@ -37,13 +35,30 @@ class LoginController extends Controller
         unset($credentials['email_or_username']);
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            if (auth()->user()->role == 'admin') {
+            $userId = auth()->user()->id;
+            // dd($userId);
+            $user = User::findOrFail($userId);
+
+            if ($user->role == 'admin') {
+                $request->session()->regenerate();
                 return redirect()->intended('/dashboard');
-            } elseif (auth()->user()->role == 'author') {
-                return redirect()->intended('/dashboard/news');
-            } elseif (auth()->user()->role == 'pengguna' || auth()->user()->role == 'petugas') {
-                return redirect()->intended('/dashboard/laporan');
+            } elseif ($user->role == 'author' || $user->role == 'petugas') {
+                // Check if the user has verified their email
+                if (!$user->hasVerifiedEmail()) {
+                    // Send email verification notification
+                    $user->notify(new VerifyEmail);
+
+                    // Redirect to the email verification page
+                    return redirect()->route('verification.notice', $user->id);
+                }
+
+                // User has verified email, proceed to dashboard based on role
+                $request->session()->regenerate();
+                if ($user->role == 'author') {
+                    return redirect()->intended('/dashboard/news');
+                } elseif ($user->role == 'petugas') {
+                    return redirect()->intended('/dashboard/laporan');
+                }
             }
         } else {
             // Jika login gagal
@@ -83,20 +98,45 @@ class LoginController extends Controller
                 auth()->login($existingUser);
                 return redirect()->route('laporan.index');
             } else {
-                // Jika belum ada, buat akun baru
-                $newUser = new User();
-                $newUser->name = $user->name;
-                $newUser->username = $user->name . $user->id;
-                $newUser->email = $user->email;
-                $newUser->password = Hash::make('password'); // Anda bisa memberikan password default
-                $newUser->save();
-
-                auth()->login($newUser);
-                return redirect()->route('laporan.index');
+                $data = [
+                    'name' => $user->name,
+                    'username' => $user->name . $user->id,
+                    'email' => $user->email,
+                ];
+                session(['google_register_data' => $data]);
+                return redirect()->route('redirectRegisterGoogle');
             }
         } catch (\Exception $e) {
             // Jika terjadi error, redirect kembali ke halaman login
             return redirect()->route('login');
         }
+    }
+
+    public function redirectRegisterGoogle()
+    {
+        $title = 'Pendaftaran';
+        return view('auth.register-google', compact('title'));
+    }
+
+    public function registerGoogle(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|string|min:8|confirmed'
+        ]);
+        $data = session('google_register_data', []);
+        $data['password'] = $request->password;
+
+        $user = new User();
+        $user->name = $data['name'];
+        $user->username = $data['username'];
+        $user->email = $data['email'];
+        $user->password = $data['password'];
+        $user->email_verified_at =  now();
+        $user->save();
+
+        session()->forget('google_register_data');
+        auth()->login($user);
+
+        return redirect()->route('laporan.index');
     }
 }

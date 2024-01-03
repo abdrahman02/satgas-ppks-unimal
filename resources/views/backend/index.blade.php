@@ -13,9 +13,9 @@
     <!-- row -->
 
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-sm-6">
-                <div class="card gradient-1">
+        <div class="row" style="height: 232px;">
+            <div class="col-lg-3 col-sm-6 h-100">
+                <div class="card gradient-1 h-100">
                     <div class="card-body d-flex">
                         <div class="bag-1 col-8">
                             <h3 class="card-title text-white">Berita</h3>
@@ -30,8 +30,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="card gradient-2">
+            <div class="col-lg-3 col-sm-6 h-100">
+                <div class="card gradient-2 h-100">
                     <div class="card-body d-flex">
                         <div class="bag-1 col-8">
                             <h3 class="card-title text-white">Data Sedang Proses</h3>
@@ -47,8 +47,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="card gradient-3">
+            <div class="col-lg-3 col-sm-6 h-100">
+                <div class="card gradient-3 h-100">
                     <div class="card-body d-flex">
                         <div class="bag-1 col-8">
                             <h3 class="card-title text-white">Data Selesai</h3>
@@ -64,8 +64,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="card gradient-4">
+            <div class="col-lg-3 col-sm-6 h-100">
+                <div class="card gradient-4 h-100">
                     <div class="card-body d-flex">
                         <div class="bag-1 col-8">
                             <h3 class="card-title text-white">Pengguna</h3>

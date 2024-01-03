@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('pengaduans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('prodi')->nullable();
             $table->string('fakultas')->nullable();
             $table->string('memiliki_disabilitas');
@@ -25,8 +27,7 @@ return new class extends Migration
             $table->string('waktu_kejadian');
             $table->string('bukti');
             $table->string('progres')->default('Sedang Proses');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('respon_petugas')->nullable();
             $table->timestamps();
         });
     }

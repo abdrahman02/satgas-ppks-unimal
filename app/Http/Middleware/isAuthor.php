@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,13 +17,18 @@ class isAuthor
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::user();
+        $userId = Auth::user()->id;
+        $user = User::findOrFail($userId);
 
-        if (!auth()->check() || $user->role != 'author') {
-            // jika user bukan author, arahkan ke halaman yang diinginkan
-            return redirect('/');
+        if ($user && $user->role == 'author') {
+            if (!$user->hasVerifiedEmail()) {
+                // Jika email belum diverifikasi, arahkan ke rute verifikasi email
+                return redirect()->route('verification.notice', $user->id);
+            }
+            // jika user adalah author, lanjutkan tujuan
+            return $next($request);
         }
-
-        return $next($request);
+        // jika user bukan author, arahkan ke rute yang diinginkan
+        return redirect('/');
     }
 }

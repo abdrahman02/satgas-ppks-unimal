@@ -25,17 +25,21 @@ class DashboardController extends Controller
         $bulanTahunSelesaiPertama = null;
         $bulanTahunSelesaiTerbaru = null;
         $jumlah_Selesai = 0;
-        $bulanTahunPelanggan = null;
-        $bulanTahunPelanggan = null;
+        $bulanTahunPenggunaPertama = null;
+        $bulanTahunPenggunaTerbaru = null;
         $jumlah_Pelanggan = 0;
 
         // BERITA
         // Mendapatkan data pertama
         $dataPertama = Berita::orderBy('created_at')->first();
-        $bulanTahunPertama = date('F Y', strtotime($dataPertama->created_at));
+        if ($dataPertama) {
+            $bulanTahunPertama = date('F Y', strtotime($dataPertama->created_at));
+        }
         // Mendapatkan data terbaru
         $dataTerbaru = Berita::orderBy('created_at', 'desc')->first();
-        $bulanTahunTerbaru = date('F Y', strtotime($dataTerbaru->created_at));
+        if ($dataTerbaru) {
+            $bulanTahunTerbaru = date('F Y', strtotime($dataTerbaru->created_at));
+        }
         // jumlah data
         $jumlah_berita = Berita::count();
 
@@ -64,9 +68,12 @@ class DashboardController extends Controller
 
         // Pengguna
         $dataPenggunaPertama = User::where('role', 'pengguna')->orderBy('created_at')->first();
-        $bulanTahunPenggunaPertama = date('F Y', strtotime($dataPenggunaPertama->created_at));
         $dataPenggunaTerbaru = User::where('role', 'pengguna')->orderBy('created_at')->first();
-        $bulanTahunPenggunaTerbaru = date('F Y', strtotime($dataPenggunaTerbaru->created_at));
+        if ($dataPenggunaPertama) {
+            $bulanTahunPenggunaPertama = date('F Y', strtotime($dataPenggunaPertama->created_at));
+        } else if ($dataPenggunaTerbaru) {
+            $bulanTahunPenggunaTerbaru = date('F Y', strtotime($dataPenggunaTerbaru->created_at));
+        }
         // Jumlah data
         $jumlah_Pengguna = User::where('role', 'pengguna')->count();
 

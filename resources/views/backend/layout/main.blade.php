@@ -105,6 +105,8 @@
 
     <script src="{{ asset('backend/plugins/cropperjs/dist/cropper.js') }}"></script>
 
+    <script src="https://kit.fontawesome.com/23ce94eee2.js" crossorigin="anonymous"></script>
+
 
     @stack('custom-script')
 </body>

@@ -32,11 +32,13 @@ class DashboardJabatanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_jabatan' => 'required|string|unique:jabatans,nama_jabatan'
+            'nama_jabatan' => 'required|string|unique:jabatans,nama_jabatan',
+            'level' => 'required|string'
         ]);
 
         Jabatan::create([
             'nama_jabatan' => $request->nama_jabatan,
+            'level' => $request->level
         ]);
 
         return redirect()->back()->with('success', 'Sukses, 1 Data berhasil ditambahkan!');
@@ -64,13 +66,15 @@ class DashboardJabatanController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'nama_jabatan' => 'required|string|unique:jabatans,nama_jabatan,' . $id
+            'nama_jabatan' => 'required|string|unique:jabatans,nama_jabatan,' . $id,
+            'level' => 'required|string'
         ]);
 
         $item = Jabatan::find($id);
 
         $item->update([
             'nama_jabatan' => $request->nama_jabatan,
+            'level' => $request->level
         ]);
 
         return redirect()->back()->with('success', 'Sukses, 1 Data berhasil diubah!');

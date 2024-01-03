@@ -14,11 +14,13 @@ class PengaduanController extends Controller
     {
         try {
             $user = Auth::user();
-            $data = Pengaduan::where('user_id', $user->id);
-            $dataOnProcess = $data->where('progres', 'Sedang Proses')->get();
+            if (!$user || empty($user->biodata)) {
+                return response()->json(['message' => 'Silakan isi biodata terlebih dahulu'], 403);
+            }
+            $dataOnProcess = Pengaduan::where('user_id', $user->id)->where('progres', 'Sedang Proses')->get();
             return response()->json([
                 'message' => 'Success Get All Data On Process',
-                'Data' => $dataOnProcess
+                'Data' => $dataOnProcess,
             ], 200);
         } catch (\Throwable $th) {
             return response()->json(["message" => "Failed Get All Data On Process", "error" => $th], 500);

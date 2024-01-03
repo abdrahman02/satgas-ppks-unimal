@@ -59,14 +59,34 @@
                             </div>
 
                             <div class="form-group mb-2">
-                                <label class="name">Nama Lengkap</label>
+                                <label class="name">Nama Lengkap<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control  @error('name') is-invalid @enderror"
                                     placeholder="Nama lengkap" id="name" name="name" required
                                     value="{{ old('name', $user->name) }}">
                             </div>
 
                             <div class="form-group mb-2">
-                                <label for="nip_nim_nik">NIP/NIM/NIK</label>
+                                <label for="jenis_kelamin">Jenis Kelamin<span class="text-danger">*</span></label>
+                                <select class="form-control @error('jenis_kelamin') is-invalid @enderror"
+                                    id="jenis_kelamin" name="jenis_kelamin" @if ($user->role == !'admin') required
+                                    @endif>
+                                    @if (empty($user->biodata->jenis_kelamin))
+                                    <option value="" selected>-- PILIH --</option>
+                                    @endif
+                                    @foreach ($jenisKelamins as $item)
+                                    <option value="{{ $item }}" @if (old('jenis_kelamin', $user->biodata ?
+                                        $user->biodata->jenis_kelamin : '') === $item)
+                                        selected @endif>{{ $item }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($user->role == 'admin')
+                                <span class="text-warning"><i class="icon-info"></i>&nbsp;Kosongkan jika
+                                    admin</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group mb-2">
+                                <label for="nip_nim_nik">NIP/NIM/NIK<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control  @error('nip_nim_nik') is-invalid @enderror"
                                     id="nip_nim_nik" placeholder="Masukkan NIP/NIM/NIK" name="nip_nim_nik"
                                     @if($user->role == !'admin') required @endif
@@ -78,7 +98,14 @@
                             </div>
 
                             <div class="form-group mb-2">
-                                <label for="status">Status</label>
+                                <label for="no_telepon">Nomor Telepon/WA<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control @error('no_telepon') is-invalid @enderror"
+                                    id="no_telepon" placeholder="Maasukkan nomor telepon..." name="no_telepon" value="{{ old('no_telepon',
+                                $user->biodata ? $user->biodata->no_telepon : '') }}">
+                            </div>
+
+                            <div class="form-group mb-2">
+                                <label for="status">Status Saat Ini<span class="text-danger">*</span></label>
                                 <select class="form-control @error('status') is-invalid @enderror" id="status"
                                     name="status" @if ($user->role == !'admin') required @endif>
                                     @if (empty($user->biodata->status))
@@ -95,6 +122,14 @@
                                 <span class="text-warning"><i class="icon-info"></i>&nbsp;Kosongkan jika
                                     admin</span>
                                 @endif
+                            </div>
+
+                            <div class="form-group mb-2">
+                                <label for="alamat">Alamat Lengkap<span class="text-danger">*</span></label>
+                                <textarea class="form-control @error('alamat') is-invalid @enderror"
+                                    placeholder="Masukkan alamat lengkap" id="alamat" name="alamat"
+                                    @if($user->role == !'admin') required @endif
+                                style="height: 100px">{{ old('alamat', $user->biodata ? $user->biodata->alamat : '') }}</textarea>
                             </div>
 
                             <div class="form-group mb-2">
@@ -119,41 +154,6 @@
                                 <span class="text-warning"><i class="icon-info"></i>&nbsp;Kosongkan jika
                                     admin</span>
                                 @endif
-                            </div>
-
-                            <div class="form-group mb-2">
-                                <label for="jenis_kelamin">Jenis Kelamin</label>
-                                <select class="form-control @error('jenis_kelamin') is-invalid @enderror"
-                                    id="jenis_kelamin" name="jenis_kelamin" @if ($user->role == !'admin') required
-                                    @endif>
-                                    @if (empty($user->biodata->jenis_kelamin))
-                                    <option value="" selected>-- PILIH --</option>
-                                    @endif
-                                    @foreach ($jenisKelamins as $item)
-                                    <option value="{{ $item }}" @if (old('jenis_kelamin', $user->biodata ?
-                                        $user->biodata->jenis_kelamin : '') === $item)
-                                        selected @endif>{{ $item }}</option>
-                                    @endforeach
-                                </select>
-                                @if ($user->role == 'admin')
-                                <span class="text-warning"><i class="icon-info"></i>&nbsp;Kosongkan jika
-                                    admin</span>
-                                @endif
-                            </div>
-
-                            <div class="form-group mb-2">
-                                <label for="no_telepon">Nomor Telepon/WA</label>
-                                <input type="text" class="form-control @error('no_telepon') is-invalid @enderror"
-                                    id="no_telepon" placeholder="Maasukkan nomor telepon..." name="no_telepon" value="{{ old('no_telepon',
-                                $user->biodata ? $user->biodata->no_telepon : '') }}">
-                            </div>
-
-                            <div class="form-group mb-2">
-                                <label for="alamat">Alamat Lengkap</label>
-                                <textarea class="form-control @error('alamat') is-invalid @enderror"
-                                    placeholder="Masukkan alamat lengkap" id="alamat" name="alamat"
-                                    @if($user->role == !'admin') required @endif
-                                style="height: 100px">{{ old('alamat', $user->biodata ? $user->biodata->alamat : '') }}</textarea>
                             </div>
 
                             <div class="text-center">

@@ -35,47 +35,23 @@
       </form>
 
       <h2>Struktur Pengurus SATGAS PPKS UNIMAL Periode {{ $periode->masa_periode }}</h2>
+      <hr>
 
-      {{-- Ketua --}}
-      <div class="row">
-        <div class="col-lg-3 text-center mx-auto mb-3">
-          @if (!empty($ketua->image) )
-          <img src="{{ asset('storage/struktur-organisasi/' . $ketua->image) }}" class="img-fluid">
-          @else
-          <img src="{{ asset('img/default-profile.jpg') }}" class="img-fluid rounded-pill">
-          @endif
-          <div class="deskripsi mt-2">
-            <p class="text-poppins nama">{{ $ketua->nama_pengurus }}</p>
-            <p class="text-poppins">{{ $ketua->jabatan->nama_jabatan }}</p>
-            <p class="text-poppins">{{ $ketua->latar_belakang }}</p>
-          </div>
-        </div>
-      </div>
 
-      {{-- Sekretaris --}}
-      <div class="row">
-        <div class="col-lg-3 text-center mx-auto mb-3">
-          @if (!empty($sekretaris->image) )
-          <img src="{{ asset('storage/struktur-organisasi/' . $sekretaris->image) }}" class="img-fluid">
-          @else
-          <img src="{{ asset('img/default-profile.jpg') }}" class="img-fluid rounded-pill">
-          @endif
-          <div class="deskripsi mt-2">
-            <p class="text-poppins nama">{{ $sekretaris->nama_pengurus }}</p>
-            <p class="text-poppins">{{ $sekretaris->jabatan->nama_jabatan }}</p>
-            <p class="text-poppins">{{ $sekretaris->latar_belakang }}</p>
-          </div>
-        </div>
-      </div>
+      {{-- Kelompokkan pengurus berdasarkan level jabatan --}}
+      @php
+      $groupedPengurus = $pengurus->groupBy('level');
+      @endphp
 
-      {{-- Anggota --}}
+      {{-- Tampilkan pengurus sesuai dengan kelompoknya --}}
+      @foreach($groupedPengurus as $level => $pengurusPerLevel)
       <div class="row">
-        @foreach ($anggota as $item)
+        @foreach($pengurusPerLevel as $item)
         <div class="col-lg-3 text-center mx-auto mb-3">
           @if (!empty($item->image) )
-          <img src="{{ asset('storage/struktur-organisasi/' . $item->image) }}" class="img-fluid">
+          <img src="{{ asset('storage/struktur-organisasi/' . $item->image) }}" class="img-fluid" style="height: 250px">
           @else
-          <img src="{{ asset('img/default-profile.jpg') }}" class="img-fluid rounded-pill">
+          <img src="{{ asset('img/default-profile.jpg') }}" class="img-fluid rounded-pill" style="height: 250px">
           @endif
           <div class="deskripsi mt-2">
             <p class="text-poppins nama">{{ $item->nama_pengurus }}</p>
@@ -85,6 +61,8 @@
         </div>
         @endforeach
       </div>
+      @endforeach
+      <hr>
     </div>
   </section>
 </main>

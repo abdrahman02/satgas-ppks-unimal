@@ -33,12 +33,17 @@ class DashboardPetugasController extends Controller
     public function store(Request $request)
     {
         // Validasi data yang diterima dari form
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|alpha_num|max:255|unique:users,username',
-            'email' => 'required|email|max:255|unique:users,email',
-            'password' => 'required|string|min:8|confirmed'
-        ]);
+        $validatedData = $request->validate(
+            [
+                'name' => 'required|string|max:255',
+                'username' => 'required|string|regex:/^(?=.*[a-zA-Z])(?=.*\d).+$/u|max:255|unique:users,username',
+                'email' => 'required|email|max:255|unique:users,email',
+                'password' => 'required|string|min:8|confirmed'
+            ],
+            [
+                'username.regex' => 'Username harus gabungan huruf & angka (Dapat menggunakan karakter spesial).',
+            ]
+        );
 
         // Lakukan sesuatu dengan data yang telah divalidasi, misalnya menyimpan ke database
         $user = new User();
@@ -75,13 +80,18 @@ class DashboardPetugasController extends Controller
     public function update(Request $request, string $id)
     {
         // Validasi data yang diterima dari form
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users,username,' . $id,
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'current_password' => 'required',
-            'new_password' => 'required|string|min:8|confirmed'
-        ]);
+        $validatedData = $request->validate(
+            [
+                'name' => 'required|string|max:255',
+                'username' => 'required|string|regex:/^(?=.*[a-zA-Z])(?=.*\d).+$/u|max:255|unique:users,username,' . $id,
+                'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+                'current_password' => 'required',
+                'new_password' => 'required|string|min:8|confirmed'
+            ],
+            [
+                'username.regex' => 'Username harus gabungan huruf & angka (Dapat menggunakan karakter spesial).',
+            ]
+        );
 
         $user = User::findOrFail($id);
 

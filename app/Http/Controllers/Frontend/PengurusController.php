@@ -16,8 +16,6 @@ class PengurusController extends Controller
     public function index(Request $request)
     {
         $title = 'Struktur Organisasi';
-        $posisiKetua = Jabatan::where('nama_jabatan', 'Ketua')->value('id');
-        $posisiSekretaris = Jabatan::where('nama_jabatan', 'Sekretaris')->value('id');
 
         // Jika tidak ada periode yang dipilih, ambil periode sekarang
         if (!$request->has('periode')) {
@@ -28,23 +26,19 @@ class PengurusController extends Controller
             $periode = Periode::find($periodeId);
         }
 
-        // Mengambil pengurus berdasarkan periode dan jabatan
-        $ketua = Pengurus::where('periode_id', $periode->id)
-            ->where('jabatan_id', $posisiKetua)
-            ->first();
-
-        $sekretaris = Pengurus::where('periode_id', $periode->id)
-            ->where('jabatan_id', $posisiSekretaris)
-            ->first();
-
-        $anggota = Pengurus::where('periode_id', $periode->id)
-            ->where('jabatan_id', '<>', $posisiKetua)
-            ->where('jabatan_id', '<>', $posisiSekretaris)
+        if (!$periode) return view('error.500');
+        // Mengambil pengurus berdasarkan periode
+        $pengurus = Pengurus::where('periode_id', $periode->id)
+            ->join('jabatans', 'penguruses.jabatan_id', '=', 'jabatans.id')
+            ->orderBy('jabatans.level', 'asc')
+            ->select('penguruses.*', 'jabatans.level')
             ->get();
 
         $periodes = Periode::all();
 
-        return view('frontend.profile.struktur-organisasi', compact('title', 'periode', 'ketua', 'sekretaris', 'anggota', 'periodes'));
+
+
+        return view('frontend.profile.struktur-organisasi', compact('title', 'periode', 'pengurus', 'periodes'));
     }
 
     /**

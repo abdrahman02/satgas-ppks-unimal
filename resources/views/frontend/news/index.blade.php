@@ -26,7 +26,7 @@
 
                     @if (!empty($beritas))
                     @foreach ($beritas as $item)
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 p-2">
                         <article class="entry">
 
                             <div class="entry-img">

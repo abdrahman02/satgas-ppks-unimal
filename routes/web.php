@@ -3,15 +3,19 @@
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BotManController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Frontend\BeritaController;
 use App\Http\Controllers\Auth\RegistrationController;
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Frontend\PengurusController;
+use App\Http\Controllers\DashboardKotakSaranController;
 use App\Http\Controllers\Frontend\DasarHukumController;
 use App\Http\Controllers\Backend\DashboardUserPengaduan;
+use App\Http\Controllers\Backend\DashboardTemaController;
 use App\Http\Controllers\Frontend\FilosofiLogoController;
 use App\Http\Controllers\Backend\DashboardAuthorController;
 use App\Http\Controllers\Backend\DashboardBeritaController;
@@ -21,6 +25,7 @@ use App\Http\Controllers\Backend\DashboardPetugasController;
 use App\Http\Controllers\Backend\DashboardPenggunaController;
 use App\Http\Controllers\Backend\DashboardPengurusController;
 use App\Http\Controllers\Frontend\KekerasanSeksualController;
+use App\Http\Controllers\Backend\DashboardPertanyaanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +47,12 @@ Route::resource('/struktur-organisasi', PengurusController::class)->only('index'
 Route::resource('/dasar-hukum', DasarHukumController::class)->only('index');
 Route::resource('/kekerasan-seksual', KekerasanSeksualController::class)->only('index');
 
+// Rute verifikasi email
+Route::prefix('email')->group(function () {
+    Route::get('/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
+    Route::get('/verify/show/{id}', [VerificationController::class, 'show'])->name('verification.notice');
+    Route::post('/resend/{id}', [VerificationController::class, 'resend'])->name('verification.resend');
+});
 
 // Route Guest
 Route::middleware('guest')->group(function () {
@@ -49,8 +60,11 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
     Route::get('/auth/google', [LoginController::class, 'redirectToGoogle'])->name('redirectToGoogle');
     Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallback'])->name('handleGoogleCallback');
+    Route::get('/redirect/register/google', [LoginController::class, 'redirectRegisterGoogle'])->name('redirectRegisterGoogle');
+    Route::post('/register/google', [LoginController::class, 'registerGoogle'])->name('registerGoogle');
     Route::get('/registration', [RegistrationController::class, 'index'])->name('registrasi.index');
     Route::post('/registration', [RegistrationController::class, 'store'])->name('registrasi.store');
+    Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
 });
 
 
@@ -65,6 +79,18 @@ Route::middleware('auth')->group(function () {
 // Route Admin
 Route::middleware('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::resource('/dashboard/tema', DashboardTemaController::class)->only([
+        'index',
+        'destroy',
+        'store',
+        'update'
+    ]);
+    Route::resource('/dashboard/pertanyaan', DashboardPertanyaanController::class)->only([
+        'index',
+        'destroy',
+        'store',
+        'update'
+    ]);
     Route::resource('/dashboard/pengguna', DashboardPenggunaController::class)->only([
         'index',
         'destroy',
@@ -87,7 +113,7 @@ Route::middleware('admin')->group(function () {
 
 
 // Route Author
-Route::middleware('author')->group(function () {
+Route::middleware(['author'])->group(function () {
     Route::resource('/dashboard/news', DashboardBeritaController::class);
     Route::resource('/dashboard/periode', DashboardPeriodeController::class)->except([
         'edit', 'create', 'show'
@@ -101,8 +127,9 @@ Route::middleware('author')->group(function () {
 
 
 // Route Petugas dan Pengguna
-Route::middleware('petugas_pengguna')->group(function () {
+Route::middleware(['petugas_pengguna'])->group(function () {
     Route::resource('/dashboard/laporan', DashboardUserPengaduan::class);
+    Route::resource('/dashboard/kotak-saran', DashboardKotakSaranController::class);
 });
 
 

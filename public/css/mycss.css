@@ -1,0 +1,31 @@
+/* public/css/style.css atau tambahkan langsung pada tag <style> di HTML Anda */
+.btn-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #25b97c;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-fab:hover {
+    background-color: #ffffff;
+    border-color: #25b97c;
+}
+
+.btn-fab i {
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 35px;
+    transition: color 0.3s;
+}
+
+.btn-fab:hover i {
+    color: #25b97c;
+}

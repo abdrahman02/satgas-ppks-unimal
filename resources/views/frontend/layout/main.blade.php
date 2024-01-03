@@ -25,6 +25,9 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('css/mycss.css') }}">
+
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
   @stack('custom-style')
 
@@ -54,6 +57,7 @@
   <!-- End Header -->
   @yield('content')
   @include('frontend.partials.footer')
+  {{-- @include('frontend.partials.fab-bot') --}}
 
   {{-- Jquery --}}
   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
@@ -73,6 +77,17 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+
+  <script>
+    var botmanWidget = {
+            aboutText: 'SATGAS PPKS UNIMAL',
+            aboutLink: 'http://satgas-ppks-unimal.co.id/',
+            introMessage: "PANDUAN AWAL:<br/><br/>- Ketik 'start' untuk memulai percakapan.<br/>- Ketik 'help' untuk melihat panduan tentang bot SATGAS PPKS UNIMAL.",
+            displayMessageTime: true
+        };
+  </script>
+
+  <script src="{{ asset('frontend/botman/widget.js') }}"></script>
 
   @stack('custom-script')
 </body>

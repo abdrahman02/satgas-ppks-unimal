@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\HtmlString;
 
 class LandingController extends Controller
 {

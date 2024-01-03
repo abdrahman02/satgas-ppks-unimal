@@ -52,6 +52,7 @@
                             <tr>
                                 <th class="text-center border-bottom-0">No</th>
                                 <th class="text-center border-bottom-0">Nama Jabatan</th>
+                                <th class="text-center border-bottom-0">Level</th>
                                 <th class="text-center border-bottom-0">Action</th>
                             </tr>
                         </thead>
@@ -60,6 +61,7 @@
                             <tr>
                                 <td class="text-center">{{ $jabatan->firstItem() + $key }}</td>
                                 <td>{{ $item->nama_jabatan }}</td>
+                                <td>{{ $item->level }}</td>
                                 <td class="text-center">
                                     <a class="label label-warning link-warning mx-2" title="Edit" href="#"
                                         data-toggle="modal" data-target="#modal-ubh-item{{ $item->id }}">
@@ -114,6 +116,15 @@
                                 placeholder="Masukkan nama jabatan" value="{{ old('nama_jabatan') }}" autofocus
                                 required>
                         </div>
+                        <div class="row mb-3">
+                            <label for="level" class="col-sm-2 col-lg-12">Level Jabatan</label>
+                            <input type="text" name="level" id="level"
+                                class="form-control @error('level') is-invalid @enderror"
+                                placeholder="Masukkan nama jabatan" value="{{ old('level') }}" required>
+                            <span class="text-warning"><i class="icon-info"></i>&nbsp;Contoh: <span
+                                    class="font-italic">Ketua level 1, sekretaris level
+                                    2, bendahara level 2, dll</span></span>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -149,6 +160,15 @@ $id = $item->id;
                                 class="form-control @error('nama_jabatan') is-invalid @enderror"
                                 placeholder="Masukkan tahun awal kepengurusan"
                                 value="{{ old('nama_jabatan', $item->nama_jabatan) }}" autofocus required>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="level" class="col-sm-2 col-lg-12">Level Jabatan</label>
+                            <input type="text" name="level" id="level"
+                                class="form-control @error('level') is-invalid @enderror"
+                                placeholder="Masukkan nama jabatan" value="{{ old('level', $item->level) }}" required>
+                            <span class="text-warning"><i class="icon-info"></i>&nbsp;Contoh: <span
+                                    class="font-italic">Ketua level 1, sekretaris level 2, bendahara level
+                                    2, dll</span></span>
                         </div>
                     </div>
                 </div>

@@ -16,6 +16,16 @@
               <span>Lihat detail...</span>
               <i class="bi bi-arrow-right"></i>
             </a>
+            <div class="social-links mt-3">
+              <a href="https://www.instagram.com/ppks.unimal/" target="blank" class="instagram fs-3"><i
+                  class="bi bi-instagram text-danger"></i></a>
+              <a href="https://api.whatsapp.com/send/?phone=08116785223&text&type=phone_number&app_absent=0"
+                target="blank" class="whatsapp mx-3 text-success fs-3"><i class="bi bi-whatsapp"></i></a>
+              <a href="https://t.me/ppksunimal" target="blank" class="telegram text-info fs-3"><i
+                  class="bi bi-telegram"></i></a>
+              <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSPGFjCfCTcfQwDTSlHQtBxWjplWPwFsksxJKxSzLrKqlBRrWFTJcmGsjCKcHFQpPkzvDbKl"
+                target="blank" class="gmail mx-3 text-danger fs-3"><i class="bi bi-envelope"></i></a>
+            </div>
           </div>
         </div>
       </div>
@@ -46,21 +56,22 @@
           @endif
           <h3>{{ $item->judul_berita }}</h3>
           <p>
-            {!! Str::words($item->body, 5) !!}
-          </p>
+            {!! Str::words($item->body, 10) !!}
         </div>
-      </div>
-      @endforeach
-      <div class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
-        <div class="text-center text-lg-start">
-          <a href="/berita"
-            class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-            <span>Lebih banyak...</span>
-            <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
+        </p>
       </div>
     </div>
+    @endforeach
+    <div class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
+      <div class="text-center text-lg-start">
+        <a href="/berita"
+          class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+          <span>Lebih banyak...</span>
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
   </div>
 </section>
 <!-- End Sekilas Berita Section -->
@@ -160,5 +171,21 @@
   </div>
 </section>
 {{-- End Sekilas Apa itu kekerasan seksual --}}
+
+{{-- Kantor --}}
+<section class="sekilas-kekerasan-seksual">
+  <div class="container">
+    <div class="row">
+      <header class="section-header mb-3" id="sekilas-kekerasan-seksual">
+        <h2>Kantor Kami</h2>
+      </header>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.508756112001!2d97.1470537!3d5.182392499999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x304783702b9b22ed%3A0x24ccdedebdc531c2!2sSatgas%20PPKS%20Unimal!5e0!3m2!1sid!2sid!4v1700649388017!5m2!1sid!2sid"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
 
 @endsection

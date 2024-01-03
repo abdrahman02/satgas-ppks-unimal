@@ -5,12 +5,24 @@
         <div class="content-wrapper d-flex align-items-center auth px-0">
             <div class="row w-100 mx-0">
                 <div class="col-lg-4 mx-auto">
-                    <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                    <div class="auth-form-light text-left py-5 px-4 px-sm-5 shadow-lg">
                         <div class="brand-logo d-flex justify-content-center">
                             <img src="{{ asset('img/logo-satgas-ppks-unimal.png') }}" alt="logo">
                         </div>
                         <h4 class="text-center">PENDAFTARAN</h4>
                         <h6 class="fw-light text-center">Silahkan mengisi formulir dibawah ini.</h6>
+
+                        {{-- Error --}}
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
                         <form class="pt-3" action="{{ route('registrasi.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
@@ -32,7 +44,7 @@
                             </div>
                             @error('username')
                             <div class="invalid-feedback">
-                                <small>{{ $message }}</small>
+                                <small class="text-danger">{{ $message }}</small>
                             </div>
                             @enderror
 
@@ -78,8 +90,7 @@
                                     href="{{ route('login') }}" class="text-decoration-none">Masuk
                                     disini</a></p>
                             <p class="mt-2 text-center text-body-secondary"> &copy; Copyright <strong><span>SATGAS
-                                        PPKS
-                                        UNIMAL</span></strong>. All Rights Reserved <br>Designed by <a
+                                        PPKS UNIMAL</span></strong>. All Rights Reserved <br>Designed by <a
                                     class="text-decoration-none text-secondary" href="https://github.com/abdrahman02"
                                     target="blank">M. Abdul Rahman</a></p>
                         </form>

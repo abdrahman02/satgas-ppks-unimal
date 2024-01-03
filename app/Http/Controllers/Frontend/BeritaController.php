@@ -49,8 +49,13 @@ class BeritaController extends Controller
      */
     public function show(string $id)
     {
-        $lainnya = Berita::all();
-        $otherNews = $lainnya->random(5);
+        $lainnya = Berita::where('id', '!=', $id)->get();
+
+        // Pastikan ada cukup banyak berita lainnya sebelum mencoba mengambil acak
+        $otherNewsCount = $lainnya->count();
+
+        // Jika terdapat cukup banyak berita lainnya, ambil 5 berita acak, jika tidak, ambil semuanya
+        $otherNews = $otherNewsCount >= 5 ? $lainnya->random(5) : $lainnya;
         $berita = Berita::findOrFail($id);
         $title = 'Detail Berita';
         return view('frontend.news.show', compact('otherNews', 'berita', 'title'));

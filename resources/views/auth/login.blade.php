@@ -12,6 +12,15 @@
             <div class="card-body">
 
                 {{-- Alert --}}
+                @if (session()->has('status'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('status') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <span class="text-warning">Jika kamu tidak menerima email verifikasi,<a
+                            href="{{ route('verification.resend') }}">Klik disini untuk mengirim kembali email
+                            verifikasi!</a></span>
+                </div>
+                @endif
                 @if (session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}

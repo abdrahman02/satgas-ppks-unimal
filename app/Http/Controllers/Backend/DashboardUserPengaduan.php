@@ -37,7 +37,7 @@ class DashboardUserPengaduan extends Controller
     public function create()
     {
         $title = 'Lapor!';
-        return view('backend.pengaduan.create', compact('title'));
+        return view('backend.pengaduan.create1', compact('title'));
     }
 
     /**
@@ -48,7 +48,7 @@ class DashboardUserPengaduan extends Controller
         $request->validate([
             'prodi' => 'nullable',
             'fakultas' => 'nullable',
-            'memiliki_disabilitas' => 'required|string|in:Ya,Tidak',
+            'memiliki_disabilitas' => 'required|string',
             'nama_pelaku' => 'nullable',
             'status_pelaku' => 'required|string',
             'nim_nip_nik_pelaku' => 'nullable',
@@ -56,7 +56,7 @@ class DashboardUserPengaduan extends Controller
             'kontak_pelaku' => 'nullable',
             'kronologi_kejadian' => 'required|string',
             'waktu_kejadian' => 'required|string',
-            'bukti' => 'required|mimes:pdf,zip,jpeg,png,jpg,gif,svg|'
+            'bukti' => 'required'
         ]);
 
         $item = new Pengaduan();
@@ -109,13 +109,18 @@ class DashboardUserPengaduan extends Controller
         if ($request->has('ubhKeSelesai')) {
             $item = Pengaduan::findOrFail($id);
             $item->progres = $request->ubhKeSelesai;
-            $item->save();
+            $item->update();
             return back()->with('success', 'Status berhasil diubah!');
         } elseif ($request->has('ubhKeSedangProses')) {
             $item = Pengaduan::findOrFail($id);
             $item->progres = $request->ubhKeSedangProses;
-            $item->save();
+            $item->update();
             return back()->with('success', 'Status berhasil diubah!');
+        } else if ($request->has('respon_petugas')) {
+            $item = Pengaduan::findOrFail($id);
+            $item->respon_petugas = $request->respon_petugas;
+            $item->update();
+            return back()->with('success', 'Berhasil memberikan respon!');
         }
     }
 

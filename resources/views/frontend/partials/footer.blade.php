@@ -16,6 +16,10 @@
                     <div class="social-links mt-3">
                         <a href="https://www.instagram.com/ppks.unimal/" target="blank" class="instagram"><i
                                 class="bi bi-instagram"></i></a>
+                        <a href="https://api.whatsapp.com/send/?phone=08116785223&text&type=phone_number&app_absent=0"
+                            target="blank" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
+                        <a href="https://t.me/ppksunimal" target="blank" class="telegram"><i
+                                class="bi bi-telegram"></i></a>
                     </div>
                 </div>
 
@@ -62,7 +66,7 @@
             &copy; Copyright <strong><span>SATGAS PPKS UNIMAL</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="https://github.com/abdrahman02" target="blank">M. Abdul Rahman</a>
+            Developed by <a href="https://github.com/abdrahman02" target="blank">M. Abdul Rahman</a>
         </div>
     </div>
 </footer>

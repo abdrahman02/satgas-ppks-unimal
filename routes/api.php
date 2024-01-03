@@ -6,6 +6,7 @@ use App\Http\Controllers\API\BeritaController;
 use App\Http\Controllers\API\ProfilController;
 use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\PengaduanController;
+use App\Http\Controllers\API\Auth\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/laporan/edit/{id}', [PengaduanController::class, 'update']);
     Route::get('/laporan/{id}', [PengaduanController::class, 'show']);
     Route::delete('/laporan/{id}', [PengaduanController::class, 'destroy']);
-    Route::get('/profil', [ProfilController::class, 'getProfil']);
-    Route::put('/profil/edit', [ProfilController::class, 'editProfil']);
+    Route::get('/user', [ProfilController::class, 'getUser']);
+    Route::put('/user/edit', [ProfilController::class, 'editUser']);
+    Route::get('/bio', [ProfilController::class, 'getBio']);
+    Route::get('/check-bio', [ProfilController::class, 'checkBiodata']);
+    Route::put('/bio/edit', [ProfilController::class, 'editBio']);
+    Route::put('/password/edit', [ProfilController::class, 'ubahPassword']);
 });
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/verify-email', [AuthController::class, 'googleSignInCheckEmail']);
+Route::post('/register-email-google', [AuthController::class, 'registerGoogleSignIn']);
+Route::get('/verify-email/{code}', [VerificationController::class, 'verify'])->name('api-verification.verify');
+Route::post('/resend-verification-email', [VerificationController::class, 'resend'])->name('api-verification.resend');

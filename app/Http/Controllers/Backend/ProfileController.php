@@ -21,7 +21,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         // Ambil data jenis kelamin dari model User (atau Anda bisa ambil dari model Biodata)
         $statuses = [
-            'Mahasiswa',
+            'Mahasiswa/i',
             'Dosen',
             'Tendik',
             'Masyarakat Umum'
@@ -72,13 +72,13 @@ class ProfileController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'nip_nim_nik' => 'nullable|string|max:255',
-            'status' => 'nullable|string|max:255',
+            'jenis_kelamin' => 'required',
+            'nip_nim_nik' => 'required|string|max:255',
+            'no_telepon' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
+            'alamat' => 'required|string',
             'tempat_lahir' => 'nullable|string|max:255',
             'tanggal_lahir' => 'nullable|date',
-            'jenis_kelamin' => 'nullable',
-            'no_telepon' => 'required|string|max:255',
-            'alamat' => 'required|string',
         ]);
 
 
